@@ -1,0 +1,383 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Application.API</name>
+    </assembly>
+    <members>
+        <member name="T:Application.API.Authentication.ApplicationDbContext">
+            <summary>
+            Application dbContext class
+            </summary>
+        </member>
+        <member name="M:Application.API.Authentication.ApplicationDbContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{Application.API.Authentication.ApplicationDbContext})">
+            <summary>
+            Parameterized constructor
+            </summary>
+            <param name="options">ApplicationDbContext options</param>
+        </member>
+        <member name="T:Application.API.Authentication.ApplicationUser">
+            <summary>
+            Class for application user
+            </summary>
+        </member>
+        <member name="T:Application.API.Authentication.LoginModel">
+            <summary>
+            Model class for login
+            </summary>
+        </member>
+        <member name="P:Application.API.Authentication.LoginModel.Username">
+            <summary>
+            Username
+            </summary>
+        </member>
+        <member name="P:Application.API.Authentication.LoginModel.Password">
+            <summary>
+            User password
+            </summary>
+        </member>
+        <member name="T:Application.API.Authentication.RegisterModel">
+            <summary>
+            Model class for user registration
+            </summary>
+        </member>
+        <member name="P:Application.API.Authentication.RegisterModel.Username">
+            <summary>
+            User name
+            </summary>
+        </member>
+        <member name="P:Application.API.Authentication.RegisterModel.Email">
+            <summary>
+            User email
+            </summary>
+        </member>
+        <member name="P:Application.API.Authentication.RegisterModel.Password">
+            <summary>
+            User password
+            </summary>
+        </member>
+        <member name="T:Application.API.Authentication.Response">
+            <summary>
+            Response class
+            </summary>
+        </member>
+        <member name="P:Application.API.Authentication.Response.Status">
+            <summary>
+            Response status
+            </summary>
+        </member>
+        <member name="P:Application.API.Authentication.Response.Message">
+            <summary>
+            Response message
+            </summary>
+        </member>
+        <member name="T:Application.API.Controllers.AuthenticateController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Application.API.Controllers.AuthenticateController.userManager">
+            <summary>
+            Readonly variable of UserManager
+            </summary>
+        </member>
+        <member name="F:Application.API.Controllers.AuthenticateController._configuration">
+            <summary>
+            Readonly variable of IConfiguration
+            </summary>
+        </member>
+        <member name="M:Application.API.Controllers.AuthenticateController.#ctor(Microsoft.AspNetCore.Identity.UserManager{Application.API.Authentication.ApplicationUser},Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Parameterized constructor
+            </summary>
+            <param name="userManager">UserManager ApplicationUser userManager</param>
+            <param name="configuration">IConfiguration configuration</param>
+        </member>
+        <member name="M:Application.API.Controllers.AuthenticateController.Login(Application.API.Authentication.LoginModel)">
+            <summary>
+            Login with user credentials
+            </summary>
+            <param name="model">LoginModel model</param>
+            <returns></returns>
+        </member>
+        <member name="M:Application.API.Controllers.AuthenticateController.Register(Application.API.Authentication.RegisterModel)">
+            <summary>
+            Register user detail
+            </summary>
+            <param name="model">RegisterModel model</param>
+            <returns></returns>
+        </member>
+        <member name="T:Application.API.Controllers.PlaceInfoController">
+            <summary>
+            API Controller for PlaceInfo
+            </summary>
+        </member>
+        <member name="F:Application.API.Controllers.PlaceInfoController._placeInfoService">
+            <summary>
+            Readonly variable of IPlaceInfoService
+            </summary>
+        </member>
+        <member name="M:Application.API.Controllers.PlaceInfoController.#ctor(Application.Interface.IPlaceInfoService)">
+            <summary>
+            Parameterized constructor
+            </summary>
+            <param name="placeInfoService">IPlaceInfoService placeInfoService</param>
+        </member>
+        <member name="M:Application.API.Controllers.PlaceInfoController.GetPlaceInfos">
+            <summary>
+            Get Place Info
+            </summary>
+            <returns>IEnumerable PlaceInfo </returns>
+        </member>
+        <member name="M:Application.API.Controllers.PlaceInfoController.GetPlaceInfoById(System.Int32)">
+            <summary>
+            Get Place Info By Id
+            </summary>
+            <param name="id">int id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Application.API.Controllers.PlaceInfoController.PostPlaceInfo(Application.DTO.PlaceInfo)">
+            <summary>
+            Post Place Info
+            </summary>
+            <param name="placeinfo">PlaceInfo placeinfo</param>
+            <returns></returns>
+        </member>
+        <member name="M:Application.API.Controllers.PlaceInfoController.PutPlaceInfo(System.Int32,Application.DTO.PlaceInfo)">
+            <summary>
+            Put Place Info
+            </summary>
+            <param name="id">int id</param>
+            <param name="placeinfo">PlaceInfo placeinfo</param>
+            <returns></returns>
+        </member>
+        <member name="M:Application.API.Controllers.PlaceInfoController.Delete(System.Int32)">
+            <summary>
+            Delete by id
+            </summary>
+            <param name="id">int id</param>
+            <returns></returns>
+        </member>
+        <member name="T:Application.API.Controllers.StoreController">
+            <summary>
+            Store Controller
+            </summary>
+        </member>
+        <member name="F:Application.API.Controllers.StoreController.CountryCodeHeaderName">
+            <summary>
+            CountryCode Header Name
+            </summary>
+        </member>
+        <member name="M:Application.API.Controllers.StoreController.#ctor(Application.API.Controllers.IRepository,Microsoft.AspNetCore.Http.IHttpContextAccessor)">
+            <summary>
+            Parameterized constructor
+            </summary>
+            <param name="repository">IRepository repository</param>
+            <param name="httpContextAccessor">IHttpContextAccessor httpContextAccessor</param>
+        </member>
+        <member name="M:Application.API.Controllers.StoreController.GetStores">
+            <summary>
+            GetStores
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Application.API.Controllers.StoreController.GetStore(System.Int32,System.Boolean)">
+            <summary>
+            GetStore by Id
+            </summary>
+            <param name="storeId">int storeId</param>
+            <param name="includeCustomer">bool includeCustomer = false</param>
+            <returns></returns>
+        </member>
+        <member name="M:Application.API.Controllers.StoreController.CreateCustomer(Application.API.Controllers.Customer)">
+            <summary>
+            Create Customer
+            </summary>
+            <param name="customer">Customer customer</param>
+            <returns></returns>
+        </member>
+        <member name="T:Application.API.Controllers.IRepository">
+            <summary>
+            IRepository
+            </summary>
+        </member>
+        <member name="M:Application.API.Controllers.IRepository.GetStores(System.Func{Application.API.Controllers.Store,System.Boolean},System.Boolean)">
+            <summary>
+            GetStores
+            </summary>
+            <param name="filter">filter</param>
+            <param name="includeCustomers">bool includeCustomers = false</param>
+            <returns></returns>
+        </member>
+        <member name="M:Application.API.Controllers.IRepository.GetCustomers(System.Int32)">
+            <summary>
+            Get Customers
+            </summary>
+            <param name="storeId">int storeId</param>
+            <returns></returns>
+        </member>
+        <member name="M:Application.API.Controllers.IRepository.AddCustomer(Application.API.Controllers.Customer)">
+            <summary>
+            Add Customer
+            </summary>
+            <param name="customer">Customer customer</param>
+            <returns></returns>
+        </member>
+        <member name="T:Application.API.Controllers.Store">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Application.API.Controllers.Store.StoreId">
+            <summary>
+            StoreId
+            </summary>
+        </member>
+        <member name="P:Application.API.Controllers.Store.CountryCode">
+            <summary>
+            CountryCode
+            </summary>
+        </member>
+        <member name="P:Application.API.Controllers.Store.Customers">
+            <summary>
+            Customers
+            </summary>
+        </member>
+        <member name="T:Application.API.Controllers.Customer">
+            <summary>
+            Customer class
+            </summary>
+        </member>
+        <member name="P:Application.API.Controllers.Customer.CustomerId">
+            <summary>
+            CustomerId
+            </summary>
+        </member>
+        <member name="P:Application.API.Controllers.Customer.StoreId">
+            <summary>
+            StoreId
+            </summary>
+        </member>
+        <member name="P:Application.API.Controllers.Customer.Email">
+            <summary>
+            Email
+            </summary>
+        </member>
+        <member name="T:Application.API.Controllers.WeatherForecastController">
+            <summary>
+            API Controller for weather forecast
+            </summary>
+        </member>
+        <member name="F:Application.API.Controllers.WeatherForecastController.Summaries">
+            <summary>
+            Readonly variable with default values
+            </summary>
+        </member>
+        <member name="F:Application.API.Controllers.WeatherForecastController._logger">
+            <summary>
+            Readonly variable of ILogger
+            </summary>
+        </member>
+        <member name="M:Application.API.Controllers.WeatherForecastController.#ctor(Microsoft.Extensions.Logging.ILogger{Application.API.Controllers.WeatherForecastController},Microsoft.AspNetCore.Http.IHttpContextAccessor)">
+            <summary>
+            Parameterized constructor
+            </summary>
+            <param name="logger">ILogger WeatherForecastController logger</param>
+            <param name="httpContextAccessor">IHttpContextAccessor httpContextAccessor</param>
+        </member>
+        <member name="M:Application.API.Controllers.WeatherForecastController.Get">
+            <summary>
+            Get method
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Application.API.Extensions.SwaggerConfiguration">
+            <summary>
+            Swagger Configuration
+            </summary>
+        </member>
+        <member name="M:Application.API.Extensions.SwaggerConfiguration.AddSwaggerConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Add Swagger Configuration Using Method Extension
+            </summary>
+            <param name="services">IServiceCollection services</param>
+        </member>
+        <member name="M:Application.API.Extensions.SwaggerConfiguration.UseSwaggerConfig(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Use Swagger Config Using Method Extension
+            </summary>
+            <param name="app">IApplicationBuilder app</param>
+        </member>
+        <member name="T:Application.API.Program">
+            <summary>
+            Program class
+            </summary>
+        </member>
+        <member name="M:Application.API.Program.Main(System.String[])">
+            <summary>
+            Main method from program class
+            </summary>
+            <param name="args">string[] args</param>
+        </member>
+        <member name="M:Application.API.Program.CreateHostBuilder(System.String[])">
+            <summary>
+            Create Host Builder
+            </summary>
+            <param name="args">string[] args</param>
+            <returns>Returns IHostBuilder</returns>
+        </member>
+        <member name="T:Application.API.Startup">
+            <summary>
+            Startup class
+            </summary>
+        </member>
+        <member name="M:Application.API.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Parameterized constructor
+            </summary>
+            <param name="configuration">IConfiguration configuration</param>
+        </member>
+        <member name="P:Application.API.Startup.Configuration">
+            <summary>
+            Property with only get for IConfiguration
+            </summary>
+        </member>
+        <member name="M:Application.API.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            This method gets called by the runtime. Use this method to add services to the container.
+            </summary>
+            <param name="services">IServiceCollection services</param>
+        </member>
+        <member name="M:Application.API.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            </summary>
+            <param name="app">IApplicationBuilder app</param>
+            <param name="env">IWebHostEnvironment env</param>
+        </member>
+        <member name="T:Application.API.WeatherForecast">
+            <summary>
+            Model class for weather forecast
+            </summary>
+        </member>
+        <member name="P:Application.API.WeatherForecast.Date">
+            <summary>
+            Forecast date
+            </summary>
+        </member>
+        <member name="P:Application.API.WeatherForecast.TemperatureC">
+            <summary>
+            Forecast temperature in C
+            </summary>
+        </member>
+        <member name="P:Application.API.WeatherForecast.TemperatureF">
+            <summary>
+            Forecast temperature in F
+            </summary>
+        </member>
+        <member name="P:Application.API.WeatherForecast.Summary">
+            <summary>
+            Forecast summary
+            </summary>
+        </member>
+    </members>
+</doc>

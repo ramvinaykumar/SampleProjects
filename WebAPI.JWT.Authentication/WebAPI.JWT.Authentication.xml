@@ -1,0 +1,310 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebAPI.JWT.Authentication</name>
+    </assembly>
+    <members>
+        <member name="T:WebAPI.JWT.Authentication.Controllers.UsersController">
+            <summary>
+            User Controller
+            </summary>
+        </member>
+        <member name="M:WebAPI.JWT.Authentication.Controllers.UsersController.#ctor(WebAPI.JWT.Authentication.Repository.IUserService)">
+            <summary>
+            Parameterized Controller
+            </summary>
+            <param name="userService">IUserService userService</param>
+        </member>
+        <member name="M:WebAPI.JWT.Authentication.Controllers.UsersController.Authenticate(WebAPI.JWT.Authentication.Models.Request.AuthenticateRequest)">
+            <summary>
+            Authenticate User
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebAPI.JWT.Authentication.Controllers.UsersController.GetAll">
+            <summary>
+            Get all users
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:WebAPI.JWT.Authentication.Extensions.SwaggerConfiguration">
+            <summary>
+            Class for swagger configuration
+            </summary>
+        </member>
+        <member name="M:WebAPI.JWT.Authentication.Extensions.SwaggerConfiguration.AddSwaggerConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Add Swagger Configuration Using Method Extension
+            </summary>
+            <param name="services">IServiceCollection services</param>
+        </member>
+        <member name="M:WebAPI.JWT.Authentication.Extensions.SwaggerConfiguration.UseSwaggerConfig(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Use Swagger Config Using Method Extension
+            </summary>
+            <param name="app">IApplicationBuilder app</param>
+        </member>
+        <member name="T:WebAPI.JWT.Authentication.Helpers.AppSettings">
+            <summary>
+            AppSettings class
+            </summary>
+        </member>
+        <member name="P:WebAPI.JWT.Authentication.Helpers.AppSettings.Secret">
+            <summary>
+            Secret key
+            </summary>
+        </member>
+        <member name="T:WebAPI.JWT.Authentication.Helpers.AuthorizeAttribute">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WebAPI.JWT.Authentication.Helpers.AuthorizeAttribute.OnAuthorization(Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:WebAPI.JWT.Authentication.Helpers.JwtMiddleware">
+            <summary>
+            Jwt Middleware class 
+            </summary>
+        </member>
+        <member name="F:WebAPI.JWT.Authentication.Helpers.JwtMiddleware._next">
+            <summary>
+            Readonly variable for RequestDelegate
+            </summary>
+        </member>
+        <member name="F:WebAPI.JWT.Authentication.Helpers.JwtMiddleware._appSettings">
+            <summary>
+            Readonly variable for AppSettings
+            </summary>
+        </member>
+        <member name="M:WebAPI.JWT.Authentication.Helpers.JwtMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Microsoft.Extensions.Options.IOptions{WebAPI.JWT.Authentication.Helpers.AppSettings})">
+            <summary>
+            Parameterized constructor
+            </summary>
+            <param name="next">RequestDelegate next</param>
+            <param name="appSettings">AppSettings appSettings</param>
+        </member>
+        <member name="M:WebAPI.JWT.Authentication.Helpers.JwtMiddleware.Invoke(Microsoft.AspNetCore.Http.HttpContext,WebAPI.JWT.Authentication.Repository.IUserService)">
+            <summary>
+            Invoke
+            </summary>
+            <param name="context">HttpContext context</param>
+            <param name="userService">IUserService userService</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebAPI.JWT.Authentication.Helpers.JwtMiddleware.attachUserToContext(Microsoft.AspNetCore.Http.HttpContext,WebAPI.JWT.Authentication.Repository.IUserService,System.String)">
+            <summary>
+            Attach User To Context
+            </summary>
+            <param name="context">HttpContext context</param>
+            <param name="userService">IUserService userService</param>
+            <param name="token">string token</param>
+        </member>
+        <member name="T:WebAPI.JWT.Authentication.Models.Request.AuthenticateRequest">
+            <summary>
+            Model class for authentication request
+            </summary>
+        </member>
+        <member name="P:WebAPI.JWT.Authentication.Models.Request.AuthenticateRequest.Username">
+            <summary>
+            Username
+            </summary>
+        </member>
+        <member name="P:WebAPI.JWT.Authentication.Models.Request.AuthenticateRequest.Password">
+            <summary>
+            Password
+            </summary>
+        </member>
+        <member name="T:WebAPI.JWT.Authentication.Models.Response.AuthenticateResponse">
+            <summary>
+            Model class for authentication response
+            </summary>
+        </member>
+        <member name="P:WebAPI.JWT.Authentication.Models.Response.AuthenticateResponse.Id">
+            <summary>
+            UserId
+            </summary>
+        </member>
+        <member name="P:WebAPI.JWT.Authentication.Models.Response.AuthenticateResponse.FirstName">
+            <summary>
+            User first name
+            </summary>
+        </member>
+        <member name="P:WebAPI.JWT.Authentication.Models.Response.AuthenticateResponse.LastName">
+            <summary>
+            User last name
+            </summary>
+        </member>
+        <member name="P:WebAPI.JWT.Authentication.Models.Response.AuthenticateResponse.Username">
+            <summary>
+            User name
+            </summary>
+        </member>
+        <member name="P:WebAPI.JWT.Authentication.Models.Response.AuthenticateResponse.Token">
+            <summary>
+            Authentication token
+            </summary>
+        </member>
+        <member name="M:WebAPI.JWT.Authentication.Models.Response.AuthenticateResponse.#ctor(WebAPI.JWT.Authentication.Models.User,System.String)">
+            <summary>
+            Parameterized Constructor
+            </summary>
+            <param name="user">User user</param>
+            <param name="token">string token</param>
+        </member>
+        <member name="T:WebAPI.JWT.Authentication.Models.User">
+            <summary>
+            Model class for User
+            </summary>
+        </member>
+        <member name="P:WebAPI.JWT.Authentication.Models.User.Id">
+            <summary>
+            UserId
+            </summary>
+        </member>
+        <member name="P:WebAPI.JWT.Authentication.Models.User.FirstName">
+            <summary>
+            User first name
+            </summary>
+        </member>
+        <member name="P:WebAPI.JWT.Authentication.Models.User.LastName">
+            <summary>
+            User last name
+            </summary>
+        </member>
+        <member name="P:WebAPI.JWT.Authentication.Models.User.Username">
+            <summary>
+            User name
+            </summary>
+        </member>
+        <member name="P:WebAPI.JWT.Authentication.Models.User.Password">
+            <summary>
+            User password
+            </summary>
+        </member>
+        <member name="T:WebAPI.JWT.Authentication.Program">
+            <summary>
+            Main class for Program
+            </summary>
+        </member>
+        <member name="M:WebAPI.JWT.Authentication.Program.Main(System.String[])">
+            <summary>
+            Main method of the class
+            </summary>
+            <param name="args">string[] args</param>
+        </member>
+        <member name="M:WebAPI.JWT.Authentication.Program.CreateHostBuilder(System.String[])">
+            <summary>
+            Create Host Builder
+            </summary>
+            <param name="args">string[] args</param>
+            <returns>Returns IHostBuilder</returns>
+        </member>
+        <member name="T:WebAPI.JWT.Authentication.Repository.IUserService">
+            <summary>
+            Interface for user services
+            </summary>
+        </member>
+        <member name="M:WebAPI.JWT.Authentication.Repository.IUserService.Authenticate(WebAPI.JWT.Authentication.Models.Request.AuthenticateRequest)">
+            <summary>
+            Authenticate user
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebAPI.JWT.Authentication.Repository.IUserService.GetAll">
+            <summary>
+            Get all users
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebAPI.JWT.Authentication.Repository.IUserService.GetById(System.Int32)">
+            <summary>
+            Get user by id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WebAPI.JWT.Authentication.Services.UserService">
+            <summary>
+            Service class for user
+            </summary>
+        </member>
+        <member name="F:WebAPI.JWT.Authentication.Services.UserService._users">
+            <summary>
+            User list with static data
+            </summary>
+        </member>
+        <member name="F:WebAPI.JWT.Authentication.Services.UserService._appSettings">
+            <summary>
+            Readonly variable
+            </summary>
+        </member>
+        <member name="M:WebAPI.JWT.Authentication.Services.UserService.#ctor(Microsoft.Extensions.Options.IOptions{WebAPI.JWT.Authentication.Helpers.AppSettings})">
+            <summary>
+            Parameterized constructor
+            </summary>
+            <param name="appSettings">AppSettings appSettings</param>
+        </member>
+        <member name="M:WebAPI.JWT.Authentication.Services.UserService.Authenticate(WebAPI.JWT.Authentication.Models.Request.AuthenticateRequest)">
+            <summary>
+            Authenticate the user
+            </summary>
+            <param name="model">AuthenticateRequest model</param>
+            <returns>Returns AuthenticateResponse</returns>
+        </member>
+        <member name="M:WebAPI.JWT.Authentication.Services.UserService.GetAll">
+            <summary>
+            Get all the user data
+            </summary>
+            <returns>Return users list</returns>
+        </member>
+        <member name="M:WebAPI.JWT.Authentication.Services.UserService.GetById(System.Int32)">
+            <summary>
+            Get user data by Id
+            </summary>
+            <param name="id">int id</param>
+            <returns>Return user data</returns>
+        </member>
+        <member name="M:WebAPI.JWT.Authentication.Services.UserService.generateJwtToken(WebAPI.JWT.Authentication.Models.User)">
+            <summary>
+            Generate JWT toke
+            </summary>
+            <param name="user">User user</param>
+            <returns>Returns the token as string</returns>
+        </member>
+        <member name="T:WebAPI.JWT.Authentication.Startup">
+            <summary>
+            Startup class
+            </summary>
+        </member>
+        <member name="M:WebAPI.JWT.Authentication.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Parameterized constructor
+            </summary>
+            <param name="configuration">IConfiguration configuration</param>
+        </member>
+        <member name="P:WebAPI.JWT.Authentication.Startup.Configuration">
+            <summary>
+            Property with only get for IConfiguration
+            </summary>
+        </member>
+        <member name="M:WebAPI.JWT.Authentication.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            This method gets called by the runtime. Use this method to add services to the container.
+            </summary>
+            <param name="services">IServiceCollection services</param>
+        </member>
+        <member name="M:WebAPI.JWT.Authentication.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            </summary>
+            <param name="app">IApplicationBuilder app</param>
+            <param name="env">IWebHostEnvironment env</param>
+        </member>
+    </members>
+</doc>

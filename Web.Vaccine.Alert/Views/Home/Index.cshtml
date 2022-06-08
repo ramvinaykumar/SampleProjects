@@ -1,0 +1,168 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="content-wrapper">
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title">Fill Your Details</h2>
+            <div class="row">
+                <div class="col-md-3">
+                    <input class="form-control" type="text" id="PinCode" name="PinCode" required="required" placeholder="Enter PinCode" />
+                </div>
+                <div class="col-md-3">
+                    <input class="form-control" type="date" id="SelDate" name="Date" required="required" />
+                </div>
+                <div class="col-md-3">
+                    <input class="form-control" type="number" id="txtDays" name="Days" required="required" placeholder="Enter No Of Days" />
+                </div>
+                <div class="col-md-3 float-right">
+                    <input class="btn btn-success" type="button" id="btnSubmit" value="Submit" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <h3 class="text-capitalize text-info">Searched Count = <span id="searchedCount">0</span></h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="table dataTable no-footer">
+                        <thead>
+                            <tr>
+                                <th>Pincode</th>
+                                <th>Name</th>
+                                <th>Address</th>
+                                <th>State Name</th>
+                                <th>District Name</th>
+                                <th>Block Name</th>
+                                <th>From</th>
+                                <th>To</th>
+                                <th>Available Capacity</th>
+                                <th>Available Capacity Dose 1</th>
+                                <th>Available Capacity Dose 2</th>
+                                <th>Min Age Limit</th>
+                                <th>Vaccine</th>
+                            </tr>
+                        </thead>
+                        <tbody id="DynamicTable">
+                        </tbody>
+                    </table>
+                    <div id="Message"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts {
+    <script type="text/javascript">
+
+        var PinCode = '';
+        var SelDate = '';
+        var day = 0;
+        var searchedCount = 0;
+
+        $(document).on("click", "#btnSubmit", function () {
+            debugger;
+            PinCode = $('#PinCode').val().trim();
+            SelDate = $('#SelDate').val().trim();
+            day = $('#txtDays').val().trim();
+            if (PinCode == '') {
+                alert("Please enter Pincode!");
+                $('#PinCode').focus();
+                return false;
+            }
+            if (SelDate == '') {
+                alert("Please select Date!");
+                $('#SelDate').focus();
+                return false;
+            }
+            if (day == '') {
+                alert("Please enter number of days!");
+                $('#txtDays').focus();
+                return false;
+            }
+            startRefreshClock();
+        });
+
+        window.setInterval("startRefreshClock()", 10000);
+
+        function startRefreshClock() {
+            var Url = '@Url.Action("GetSlotAval", "Home")';
+            // console.log('PinCode >> ' + PinCode + ' SelDate === ' + SelDate);
+            $.ajax({
+                type: "POST",
+                url: Url,
+                data: { Pincode: PinCode, Date: SelDate, day: day },
+                dataType: "json",
+                success: function (result) {
+                    // console.log(result);
+                    if (result != null && result.isError === false) {
+                        $('#Message').html("");
+                        if (result.isAnySlotsAvailable === true) {
+                            $('#searchedCount').text(searchedCount++);
+                            playSound(true);
+                            CreateHtmlTable(result.slots);
+                        } else {
+                            playSound(false);
+                        }
+                    } else {
+                        playSound(false);
+                        $("#DynamicTable").html("");
+                        $('#Message').html("<p class='text-center text-danger'>Currently, there is no any slots available right now.</p>");
+                    }
+                },
+                failure: function (response) {
+                    console.log('Failed to load!', response);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log('Failed to load !', jqXHR, textStatus, errorThrown);
+                }
+            });
+        }
+
+        function playSound(play) {
+            var soundUrl = 'Sounds/sound.wav';
+            const audio = new Audio(soundUrl);
+            play === true ? audio.play() : stopAudio(audio);
+        }
+
+        function stopAudio(audio) {
+            audio.pause();
+            audio.currentTime = 0;
+        }
+
+        function CreateHtmlTable(data) {
+            //Clear result
+            $("#DynamicTable").html("");
+
+            var table = $("#DynamicTable");
+            $.each(data, function (i, value) {
+
+                //Create new row for each record
+                console.log(value);
+                var row;
+                if (value.availableCapacity > 0 || value.availableCapacityDose1 > 0 || value.availableCapacityDose2 > 0) {
+                    row = $("<tr bgcolor='#7FFF00'></tr>").appendTo(table);
+                } else {
+                    row = $("<tr></tr>").appendTo(table);
+                }
+                $("<td></td>").text(value.pincode).appendTo(row);
+                $("<td></td>").text(value.name).appendTo(row);
+                $("<td></td>").text(value.address).appendTo(row);
+                $("<td></td>").text(value.stateName).appendTo(row);
+                $("<td></td>").text(value.districtName).appendTo(row);
+                $("<td></td>").text(value.blockName).appendTo(row);
+                $("<td></td>").text(value.from).appendTo(row);
+                $("<td></td>").text(value.to).appendTo(row);
+                $("<td></td>").text(value.availableCapacity).appendTo(row);
+                $("<td></td>").text(value.availableCapacityDose1).appendTo(row);
+                $("<td></td>").text(value.availableCapacityDose2).appendTo(row);
+                $("<td></td>").text(value.minAgeLimit).appendTo(row);
+                $("<td></td>").text(value.vaccine).appendTo(row);
+            });
+        }
+    </script>
+}

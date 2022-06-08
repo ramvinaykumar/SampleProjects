@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Application.DTO\Application.DTO.csproj" />
+    <ProjectReference Include="..\Application.Helper\Application.Helper.csproj" />
+    <ProjectReference Include="..\Application.Interface\Application.Interface.csproj" />
+  </ItemGroup>
+
+</Project>

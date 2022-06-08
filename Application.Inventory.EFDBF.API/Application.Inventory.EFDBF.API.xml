@@ -1,0 +1,251 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Application.Inventory.EFDBF.API</name>
+    </assembly>
+    <members>
+        <member name="T:Application.Inventory.EFDBF.API.Controllers.ProductsController">
+            <summary>
+            Products Controller
+            </summary>
+        </member>
+        <member name="M:Application.Inventory.EFDBF.API.Controllers.ProductsController.#ctor(Application.Inventory.EFDBF.API.Models.TutorialsContext)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="context">TutorialsContext context</param>
+        </member>
+        <member name="M:Application.Inventory.EFDBF.API.Controllers.ProductsController.GetProducts(System.Nullable{System.Boolean},System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            GET: api/Products
+            </summary>
+            <param name="inStock">bool? inStock</param>
+            <param name="skip">int? skip</param>
+            <param name="take">int? take</param>
+            <returns></returns>
+        </member>
+        <member name="M:Application.Inventory.EFDBF.API.Controllers.ProductsController.GetProducts(System.Int32)">
+            <summary>
+            Get Products by Id
+            </summary>
+            <param name="id">int id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Application.Inventory.EFDBF.API.Controllers.ProductsController.PutProducts(System.Int32,Application.Inventory.EFDBF.API.Models.Products)">
+            <summary>
+            Update product by Id
+            </summary>
+            <param name="id">int id</param>
+            <param name="products">Products products</param>
+            <returns></returns>
+        </member>
+        <member name="M:Application.Inventory.EFDBF.API.Controllers.ProductsController.PostProducts(Application.Inventory.EFDBF.API.Models.Products)">
+            <summary>
+            Insert product data
+            </summary>
+            <param name="products">Products products</param>
+            <returns></returns>
+        </member>
+        <member name="M:Application.Inventory.EFDBF.API.Controllers.ProductsController.DeleteProducts(System.Int32)">
+            <summary>
+            DELETE product by Id
+            </summary>
+            <param name="id">int id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Application.Inventory.EFDBF.API.Controllers.ProductsController.ProductsExists(System.Int32)">
+            <summary>
+            Products Exists
+            </summary>
+            <param name="id">int id</param>
+            <returns></returns>
+        </member>
+        <member name="T:Application.Inventory.EFDBF.API.Extensions.SwaggerConfiguration">
+            <summary>
+            Swagger Configuration extension class
+            </summary>
+        </member>
+        <member name="M:Application.Inventory.EFDBF.API.Extensions.SwaggerConfiguration.AddSwaggerConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Add Swagger Configuration Using Method Extension
+            </summary>
+            <param name="services">IServiceCollection services</param>
+        </member>
+        <member name="M:Application.Inventory.EFDBF.API.Extensions.SwaggerConfiguration.UseSwaggerConfig(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Use Swagger Config Using Method Extension
+            </summary>
+            <param name="app">IApplicationBuilder app</param>
+        </member>
+        <member name="T:Application.Inventory.EFDBF.API.Models.Products">
+            <summary>
+            Model class for product
+            </summary>
+        </member>
+        <member name="P:Application.Inventory.EFDBF.API.Models.Products.ProductId">
+            <summary>
+            Product Id
+            </summary>
+        </member>
+        <member name="P:Application.Inventory.EFDBF.API.Models.Products.ProductName">
+            <summary>
+            Product naem
+            </summary>
+        </member>
+        <member name="P:Application.Inventory.EFDBF.API.Models.Products.Category">
+            <summary>
+            Product category
+            </summary>
+        </member>
+        <member name="P:Application.Inventory.EFDBF.API.Models.Products.Color">
+            <summary>
+            Product color
+            </summary>
+        </member>
+        <member name="P:Application.Inventory.EFDBF.API.Models.Products.UnitPrice">
+            <summary>
+            Product unit price
+            </summary>
+        </member>
+        <member name="P:Application.Inventory.EFDBF.API.Models.Products.AvailableQuantity">
+            <summary>
+            Product available quantity
+            </summary>
+        </member>
+        <member name="P:Application.Inventory.EFDBF.API.Models.Products.CreatedDate">
+            <summary>
+            Product creation date
+            </summary>
+        </member>
+        <member name="P:Application.Inventory.EFDBF.API.Models.Products.IsActive">
+            <summary>
+            Check whether product is active or not
+            </summary>
+        </member>
+        <member name="T:Application.Inventory.EFDBF.API.Models.TutorialsContext">
+            <summary>
+            Tutorials Context Class 
+            </summary>
+        </member>
+        <member name="M:Application.Inventory.EFDBF.API.Models.TutorialsContext.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Application.Inventory.EFDBF.API.Models.TutorialsContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{Application.Inventory.EFDBF.API.Models.TutorialsContext})">
+            <summary>
+            Parameterized Constructor
+            </summary>
+            <param name="options"></param>
+        </member>
+        <member name="P:Application.Inventory.EFDBF.API.Models.TutorialsContext.Products">
+            <summary>
+            Products
+            </summary>
+        </member>
+        <member name="P:Application.Inventory.EFDBF.API.Models.TutorialsContext.UserInfo">
+            <summary>
+            User Info
+            </summary>
+        </member>
+        <member name="M:Application.Inventory.EFDBF.API.Models.TutorialsContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
+            <summary>
+            On Configuring
+            </summary>
+            <param name="optionsBuilder">DbContextOptionsBuilder optionsBuilder</param>
+        </member>
+        <member name="M:Application.Inventory.EFDBF.API.Models.TutorialsContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            On Model Creating
+            </summary>
+            <param name="modelBuilder">ModelBuilder modelBuilder</param>
+        </member>
+        <member name="T:Application.Inventory.EFDBF.API.Models.UserInfo">
+            <summary>
+            Model class for user information
+            </summary>
+        </member>
+        <member name="P:Application.Inventory.EFDBF.API.Models.UserInfo.UserId">
+            <summary>
+            UserId
+            </summary>
+        </member>
+        <member name="P:Application.Inventory.EFDBF.API.Models.UserInfo.FirstName">
+            <summary>
+            First name
+            </summary>
+        </member>
+        <member name="P:Application.Inventory.EFDBF.API.Models.UserInfo.LastName">
+            <summary>
+            Last name
+            </summary>
+        </member>
+        <member name="P:Application.Inventory.EFDBF.API.Models.UserInfo.UserName">
+            <summary>
+            User name
+            </summary>
+        </member>
+        <member name="P:Application.Inventory.EFDBF.API.Models.UserInfo.Email">
+            <summary>
+            User email
+            </summary>
+        </member>
+        <member name="P:Application.Inventory.EFDBF.API.Models.UserInfo.Password">
+            <summary>
+            User password
+            </summary>
+        </member>
+        <member name="P:Application.Inventory.EFDBF.API.Models.UserInfo.CreatedDate">
+            <summary>
+            Record created date
+            </summary>
+        </member>
+        <member name="T:Application.Inventory.EFDBF.API.Program">
+            <summary>
+            Program class
+            </summary>
+        </member>
+        <member name="M:Application.Inventory.EFDBF.API.Program.Main(System.String[])">
+            <summary>
+            Main method from program class
+            </summary>
+            <param name="args">string[] args</param>
+        </member>
+        <member name="M:Application.Inventory.EFDBF.API.Program.CreateHostBuilder(System.String[])">
+            <summary>
+            Create Host Builder
+            </summary>
+            <param name="args">string[] args</param>
+            <returns>Returns IHostBuilder</returns>
+        </member>
+        <member name="T:Application.Inventory.EFDBF.API.Startup">
+            <summary>
+            Startup
+            </summary>
+        </member>
+        <member name="M:Application.Inventory.EFDBF.API.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Startup
+            </summary>
+            <param name="configuration">IConfiguration configuration</param>
+        </member>
+        <member name="P:Application.Inventory.EFDBF.API.Startup.Configuration">
+            <summary>
+            Configuration
+            </summary>
+        </member>
+        <member name="M:Application.Inventory.EFDBF.API.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            This method gets called by the runtime. Use this method to add services to the container.
+            </summary>
+            <param name="services">IServiceCollection services</param>
+        </member>
+        <member name="M:Application.Inventory.EFDBF.API.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            </summary>
+            <param name="app">IApplicationBuilder app</param>
+            <param name="env">IWebHostEnvironment env</param>
+        </member>
+    </members>
+</doc>

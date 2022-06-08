@@ -1,0 +1,429 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MongoDB.API</name>
+    </assembly>
+    <members>
+        <member name="T:MongoDB.API.Controllers.EmployeeController">
+            <summary>
+            Employee Controller
+            </summary>
+        </member>
+        <member name="M:MongoDB.API.Controllers.EmployeeController.#ctor(MongoDB.API.Services.EmployeeService)">
+            <summary>
+            Parameterized Constructor
+            </summary>
+            <param name="employeeService">EmployeeService employeeService</param>
+        </member>
+        <member name="M:MongoDB.API.Controllers.EmployeeController.AddEmployee(MongoDB.API.Models.Employee)">
+            <summary>
+            Add new record to Employee
+            </summary>
+            <param name="employee">Employee employee</param>
+            <returns></returns>
+        </member>
+        <member name="M:MongoDB.API.Controllers.EmployeeController.UpdateEmployee(MongoDB.API.Models.Employee)">
+            <summary>
+            Update the existing record of employee
+            </summary>
+            <param name="employee">Employee employee</param>
+            <returns></returns>
+        </member>
+        <member name="M:MongoDB.API.Controllers.EmployeeController.GetAllEmployee">
+            <summary>
+            Get all the employee data
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MongoDB.API.Controllers.EmployeeController.GetEmployeeById(System.String)">
+            <summary>
+            Get employee data by Id
+            </summary>
+            <param name="id">string id</param>
+            <returns></returns>
+        </member>
+        <member name="M:MongoDB.API.Controllers.EmployeeController.Delete(System.String)">
+            <summary>
+            Delete an employee by Id
+            </summary>
+            <param name="id">string id</param>
+        </member>
+        <member name="T:MongoDB.API.Extensions.SwaggerConfiguration">
+            <summary>
+            Extension Class for Swagger implementation
+            </summary>
+        </member>
+        <member name="M:MongoDB.API.Extensions.SwaggerConfiguration.AddSwaggerConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Add Swagger Configuration Using Method Extension
+            </summary>
+            <param name="services">IServiceCollection services</param>
+        </member>
+        <member name="M:MongoDB.API.Extensions.SwaggerConfiguration.UseSwaggerConfig(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Use Swagger Config Using Method Extension
+            </summary>
+            <param name="app">IApplicationBuilder app</param>
+        </member>
+        <member name="T:MongoDB.API.Interface.IEmployee`1">
+            <summary>
+            Interface for Employee
+            </summary>
+            <typeparam name="T">T Type</typeparam>
+        </member>
+        <member name="M:MongoDB.API.Interface.IEmployee`1.GetAll">
+            <summary>
+            Get all employees
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MongoDB.API.Interface.IEmployee`1.GetById(System.String)">
+            <summary>
+            Get data by Id
+            </summary>
+            <param name="id">string id</param>
+            <returns></returns>
+        </member>
+        <member name="M:MongoDB.API.Interface.IEmployee`1.Create(`0)">
+            <summary>
+            Create new data
+            </summary>
+            <param name="_object">T _object</param>
+            <returns></returns>
+        </member>
+        <member name="M:MongoDB.API.Interface.IEmployee`1.Update(`0)">
+            <summary>
+            Update existing data
+            </summary>
+            <param name="_object">T _object</param>
+        </member>
+        <member name="M:MongoDB.API.Interface.IEmployee`1.Delete(`0)">
+            <summary>
+            Delete data
+            </summary>
+            <param name="_object">T _object</param>
+        </member>
+        <member name="M:MongoDB.API.Interface.IEmployee`1.RemoveById(System.String)">
+            <summary>
+            Remove data by Id
+            </summary>
+            <param name="id">string id</param>
+        </member>
+        <member name="T:MongoDB.API.Interface.IEmployeeDBSettings">
+            <summary>
+            DB Setting Interface
+            </summary>
+        </member>
+        <member name="P:MongoDB.API.Interface.IEmployeeDBSettings.EmployeesCollectionName">
+            <summary>
+            Collection Name
+            </summary>
+        </member>
+        <member name="P:MongoDB.API.Interface.IEmployeeDBSettings.ConnectionString">
+            <summary>
+            Connection string name
+            </summary>
+        </member>
+        <member name="P:MongoDB.API.Interface.IEmployeeDBSettings.DatabaseName">
+            <summary>
+            Database name
+            </summary>
+        </member>
+        <member name="T:MongoDB.API.Models.Book">
+            <summary>
+            Model class for Book
+            </summary>
+        </member>
+        <member name="P:MongoDB.API.Models.Book.Id">
+            <summary>
+            Primary Id
+            </summary>
+        </member>
+        <member name="P:MongoDB.API.Models.Book.BookName">
+            <summary>
+            Book name
+            </summary>
+        </member>
+        <member name="P:MongoDB.API.Models.Book.Price">
+            <summary>
+            Book price
+            </summary>
+        </member>
+        <member name="P:MongoDB.API.Models.Book.Category">
+            <summary>
+            Book category
+            </summary>
+        </member>
+        <member name="P:MongoDB.API.Models.Book.Author">
+            <summary>
+            Book author
+            </summary>
+        </member>
+        <member name="T:MongoDB.API.Models.BookstoreDatabaseSettings">
+            <summary>
+            DB settings for book store
+            </summary>
+        </member>
+        <member name="P:MongoDB.API.Models.BookstoreDatabaseSettings.BooksCollectionName">
+            <summary>
+            Book collection name
+            </summary>
+        </member>
+        <member name="P:MongoDB.API.Models.BookstoreDatabaseSettings.ConnectionString">
+            <summary>
+            DB Connection string
+            </summary>
+        </member>
+        <member name="P:MongoDB.API.Models.BookstoreDatabaseSettings.DatabaseName">
+            <summary>
+            DB name
+            </summary>
+        </member>
+        <member name="T:MongoDB.API.Models.Employee">
+            <summary>
+            Employee Model
+            </summary>
+        </member>
+        <member name="P:MongoDB.API.Models.Employee.Id">
+            <summary>
+            Employee ID
+            </summary>
+        </member>
+        <member name="P:MongoDB.API.Models.Employee.Name">
+            <summary>
+            Employee Name
+            </summary>
+        </member>
+        <member name="P:MongoDB.API.Models.Employee.Department">
+            <summary>
+            Employee Department
+            </summary>
+        </member>
+        <member name="P:MongoDB.API.Models.Employee.Address">
+            <summary>
+            Employee Address
+            </summary>
+        </member>
+        <member name="P:MongoDB.API.Models.Employee.City">
+            <summary>
+            Employee City
+            </summary>
+        </member>
+        <member name="P:MongoDB.API.Models.Employee.Country">
+            <summary>
+            Employee Country
+            </summary>
+        </member>
+        <member name="T:MongoDB.API.Models.EmployeeDBSettings">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MongoDB.API.Models.EmployeeDBSettings.EmployeesCollectionName">
+            <summary>
+            Collection Name
+            </summary>
+        </member>
+        <member name="P:MongoDB.API.Models.EmployeeDBSettings.ConnectionString">
+            <summary>
+            Connection string name
+            </summary>
+        </member>
+        <member name="P:MongoDB.API.Models.EmployeeDBSettings.DatabaseName">
+            <summary>
+            Database name
+            </summary>
+        </member>
+        <member name="T:MongoDB.API.Models.IBookstoreDatabaseSettings">
+            <summary>
+            Interface for book store settings
+            </summary>
+        </member>
+        <member name="P:MongoDB.API.Models.IBookstoreDatabaseSettings.BooksCollectionName">
+            <summary>
+            Book collection name
+            </summary>
+        </member>
+        <member name="P:MongoDB.API.Models.IBookstoreDatabaseSettings.ConnectionString">
+            <summary>
+            DB Connection string
+            </summary>
+        </member>
+        <member name="P:MongoDB.API.Models.IBookstoreDatabaseSettings.DatabaseName">
+            <summary>
+            DB name
+            </summary>
+        </member>
+        <member name="T:MongoDB.API.Models.Status">
+            <summary>
+            Model class for Status
+            </summary>
+        </member>
+        <member name="P:MongoDB.API.Models.Status.Result">
+            <summary>
+            Result
+            </summary>
+        </member>
+        <member name="P:MongoDB.API.Models.Status.Message">
+            <summary>
+            Message
+            </summary>
+        </member>
+        <member name="T:MongoDB.API.Program">
+            <summary>
+            Program class
+            </summary>
+        </member>
+        <member name="M:MongoDB.API.Program.Main(System.String[])">
+            <summary>
+            Main method from program class
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:MongoDB.API.Program.CreateHostBuilder(System.String[])">
+            <summary>
+            Create Host Builder
+            </summary>
+            <param name="args">string[] args</param>
+            <returns>Returns IHostBuilder</returns>
+        </member>
+        <member name="T:MongoDB.API.Services.BookService">
+            <summary>
+            Book service class
+            </summary>
+        </member>
+        <member name="F:MongoDB.API.Services.BookService._books">
+            <summary>
+            Read only variable of IMongoCollection
+            </summary>
+        </member>
+        <member name="M:MongoDB.API.Services.BookService.#ctor(MongoDB.API.Models.IBookstoreDatabaseSettings)">
+            <summary>
+            Parameterized constructor
+            </summary>
+            <param name="settings">IBookstoreDatabaseSettings settings</param>
+        </member>
+        <member name="M:MongoDB.API.Services.BookService.Get">
+            <summary>
+            Get the list of book
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MongoDB.API.Services.BookService.Get(System.String)">
+            <summary>
+            Get book data by book id
+            </summary>
+            <param name="id">string id</param>
+            <returns></returns>
+        </member>
+        <member name="M:MongoDB.API.Services.BookService.Create(MongoDB.API.Models.Book)">
+            <summary>
+            Create new record for book
+            </summary>
+            <param name="book">Book object</param>
+            <returns></returns>
+        </member>
+        <member name="M:MongoDB.API.Services.BookService.Update(System.String,MongoDB.API.Models.Book)">
+            <summary>
+            
+            </summary>
+            <param name="id">string id</param>
+            <param name="bookIn"></param>
+        </member>
+        <member name="M:MongoDB.API.Services.BookService.Remove(MongoDB.API.Models.Book)">
+            <summary>
+            Remove data by book object
+            </summary>
+            <param name="bookIn">Book object</param>
+        </member>
+        <member name="M:MongoDB.API.Services.BookService.Remove(System.String)">
+            <summary>
+            Remove data by id
+            </summary>
+            <param name="id">string id</param>
+        </member>
+        <member name="T:MongoDB.API.Services.EmployeeService">
+            <summary>
+            Employee Service Class
+            </summary>
+        </member>
+        <member name="F:MongoDB.API.Services.EmployeeService._employee">
+            <summary>
+            IMongoCollection variable
+            </summary>
+        </member>
+        <member name="M:MongoDB.API.Services.EmployeeService.#ctor(MongoDB.API.Interface.IEmployeeDBSettings)">
+            <summary>
+            Parameterized Constructor
+            </summary>
+            <param name="employeeDBSettings">IEmployeeDBSettings employeeDBSettings</param>
+        </member>
+        <member name="M:MongoDB.API.Services.EmployeeService.GetAll">
+            <summary>
+            Get all employees data
+            </summary>
+            <returns>Return employee list</returns>
+        </member>
+        <member name="M:MongoDB.API.Services.EmployeeService.GetById(System.String)">
+            <summary>
+            Get employee data by Id
+            </summary>
+            <param name="id">string id</param>
+            <returns>Returns Employee data</returns>
+        </member>
+        <member name="M:MongoDB.API.Services.EmployeeService.Create(MongoDB.API.Models.Employee)">
+            <summary>
+            Create new Employee data
+            </summary>
+            <param name="employee">Employee employee</param>
+            <returns>Return new Employee data</returns>
+        </member>
+        <member name="M:MongoDB.API.Services.EmployeeService.Update(MongoDB.API.Models.Employee)">
+            <summary>
+            Update existing employee record
+            </summary>
+            <param name="employee">Employee employee</param>
+        </member>
+        <member name="M:MongoDB.API.Services.EmployeeService.Delete(MongoDB.API.Models.Employee)">
+            <summary>
+            Delete an employee data
+            </summary>
+            <param name="employee">Employee employee</param>
+        </member>
+        <member name="M:MongoDB.API.Services.EmployeeService.RemoveById(System.String)">
+            <summary>
+            Delete an employee data by Id
+            </summary>
+            <param name="id">string id</param>
+        </member>
+        <member name="T:MongoDB.API.Startup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MongoDB.API.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="P:MongoDB.API.Startup.Configuration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MongoDB.API.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            This method gets called by the runtime. Use this method to add services to the container.
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:MongoDB.API.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+        </member>
+    </members>
+</doc>

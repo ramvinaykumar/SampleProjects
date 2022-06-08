@@ -1,0 +1,56 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "registerUsers": [
+    {
+      "id": 1,
+      "fullName": "RVK",
+      "email": "rvk511982@outlook.com",
+      "mobile": "9041197955",
+      "password": "1111"
+    },
+    {
+      "fullName": "Kaushiki Anand",
+      "email": "ramvinaykumar@hotmail.com",
+      "mobile": 7997979900,
+      "password": "11111",
+      "id": 2
+    },
+    {
+      "fullName": "Shubh Laxmi",
+      "email": "shubh@test.com",
+      "mobile": 3243343433,
+      "password": "eeere",
+      "id": 3
+    },
+    {
+      "fullName": "Kaushiki",
+      "email": "kaushiki@test.com",
+      "mobile": 23232232232,
+      "password": "dfsdfad",
+      "id": 4
+    },
+    {
+      "fullName": "Keshav",
+      "email": "keshav@wgsco.in",
+      "mobile": 1234567890,
+      "password": "dsfdadf111",
+      "id": 5
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

@@ -1,0 +1,48 @@
+/* You can add global styles to this file, and also import other style files */
+.form-group label {
+    color: grey;
+  }
+  
+  .form-group input {
+    font-weight: 500;
+  }
+  
+  .form-group input::placeholder {
+    color: #c0bdbd;
+    font-weight: 300;
+  }
+  
+  thead th{
+    font-weight: 400;
+  }
+  
+  table tbody tr:hover {
+    background-color: #fffbf2;
+    cursor: pointer;
+  }
+  
+  /*for invalid form controls*/
+  input.invalid {
+    border-color: red;
+  }
+
+  .card{
+    margin-top: 20%;
+    border:none;
+    width: 500px;
+    padding: 40px;
+    position: absolute;
+    top:50%;
+    left:50%;
+    /* transform:translate(-50%, -50%); */
+    background:hsla(205, 46%, 30%, 1);
+    background:linear-gradient(90deg, hsla(205, 46%, 30%, 1) 0%, hsla(260, 29%, 36%, 1) 100%) ;
+  }
+
+  .card h1, h6{
+    color: white;
+  }
+
+  label{
+    color:white;
+  }

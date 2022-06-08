@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="text-center">
+                    <h3>User Detail</h3>
+                </div>
+                <form [formGroup]="userDetailForm" (ngSubmit)="updateUser()" autocomplete="off">
+                    <div class="mb-3">
+                        <label for="exampleInputFullName" class="form-label">Full Name</label>
+                        <input formControlName="fullName" type="text" class="form-control" id="exampleInputFullName">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputMobileNo" class="form-label">Mobile No</label>
+                        <input formControlName="mobile" type="number" maxlength="10" minlength="10" class="form-control" id="exampleInputMobileNo">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Email address</label>
+                        <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                    </div>
+                    <button type="submit" class="btn btn-primary mb-2">Update</button>
+                </form>
+                <a style="color: white;" routerLink="/dashboard">Back to Users.</a>
+            </div>
+        </div>
+    </div>
+</div>
+

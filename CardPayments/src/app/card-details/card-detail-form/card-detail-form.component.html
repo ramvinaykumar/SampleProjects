@@ -1,0 +1,32 @@
+<form novalidate autocomplete="off" #form="ngForm" (submit)="onSubmit(form)">
+    <input type="hidden" name="cardDetailId" [value]="apiService.formData.cardDetailId" />
+    <div class="form-group">
+        <label>CARD HOLDER NAME</label>
+        <input class="form-control form-control-lg" placeholder="Card Holder Name" name="cardOwnerName"
+            #cardOwnerName="ngModel" [(ngModel)]="apiService.formData.cardOwnerName" required maxlength="50" minlength="2"
+            [class.invalid]="cardOwnerName.invalid && cardOwnerName.touched" />
+    </div>
+    <div class="form-group">
+        <label>CARD NUMBER</label>
+        <input class="form-control form-control-lg" placeholder="16 Digit Card Number" name="cardNumber"
+            #cardNumber="ngModel" [(ngModel)]="apiService.formData.cardNumber" required maxlength="16" minlength="16"
+            [class.invalid]="cardNumber.invalid && cardNumber.touched" />
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label>VALID THROUGH</label>
+            <input class="form-control form-control-lg" placeholder="MM/YY" name="expiryDate" #expiryDate="ngModel"
+                [(ngModel)]="apiService.formData.expiryDate" required maxlength="5" minlength="5"
+                [class.invalid]="expiryDate.invalid && expiryDate.touched" />
+        </div>
+        <div class="form-group col-md-6">
+            <label>SECURITY CODE</label>
+            <input type="password" class="form-control form-control-lg" placeholder="Security Code"
+                name="securityNumber" #securityNumber="ngModel" [(ngModel)]="apiService.formData.securityNumber"
+                required maxlength="3" minlength="3" [class.invalid]="securityNumber.invalid && securityNumber.touched" />
+        </div>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-info btn-lg btn-block" type="submit" [disabled]="form.invalid">SUBMIT</button>
+    </div>
+</form>

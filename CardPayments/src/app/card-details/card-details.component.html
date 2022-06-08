@@ -1,0 +1,32 @@
+<div class="jumbotron py-3">
+    <h1 class="display-4 text-center">
+        Card Registration
+    </h1>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <app-card-detail-form></app-card-detail-form>
+    </div>
+    <div class="col-md-6">
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th>Card Member</th>
+                    <th>Card Number</th>
+                    <th>Exp. Date</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let card of apiService.list">
+                    <td (click)="populateSelectedData(card)">{{card.cardOwnerName}}</td>
+                    <td (click)="populateSelectedData(card)">{{card.cardNumber}}</td>
+                    <td (click)="populateSelectedData(card)">{{card.expiryDate}}</td>
+                    <td>
+                        <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(card.cardDetailId)"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+<div class="row" style="margin: 0 0 0 0;">
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th>ID</th>
+                <th>Full Name</th>
+                <th>Email Address</th>
+                <th>Mobile Number</th>
+                <th></th>
+            </tr>
+        </thead>
+         <!-- (click)="fillFormData(user)" -->
+        <tbody>
+            <tr *ngFor="let user of userList">
+                <td >{{user.id}}</td>
+                <td >{{user.fullName}}</td>
+                <td >{{user.email}}</td>
+                <td >{{user.mobile}}</td>
+                <td>
+                    <i class="far fa-trash-alt fa-lg text-danger"></i>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,1 +1,1 @@
-
+This project contains sample for how to do the card payment. Forms have been designed using bootstrap.

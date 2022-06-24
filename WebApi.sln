@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30907.101
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{1501096B-2611-4A77-94AB-7431D559A47A}"
 EndProject
@@ -81,11 +81,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PdfExport", "PdfExport\PdfE
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExportPdfTest", "ExportPdfTest\ExportPdfTest.csproj", "{9E9EEBE9-29DD-443E-88C9-E14D84BAAA5F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNet5.CRUD.API", "DotNet5.CRUD.API\DotNet5.CRUD.API.csproj", "{AA5E7CC8-73EA-41F5-9BBC-41CE4DAEDC7F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNet5.CRUD.API", "DotNet5.CRUD.API\DotNet5.CRUD.API.csproj", "{AA5E7CC8-73EA-41F5-9BBC-41CE4DAEDC7F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{CAA57170-FEE1-4025-813D-C502A43BC7D4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Net5Tests", "Net5Tests", "{DEAEA8A5-0DBC-4F2D-9FDC-FCF60B20373D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DI.Transient.Scoped.Singleton", "DI.Transient.Scoped.Singleton\DI.Transient.Scoped.Singleton.csproj", "{00F6E7C3-32DA-4812-B965-8116353E284B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -201,6 +203,10 @@ Global
 		{AA5E7CC8-73EA-41F5-9BBC-41CE4DAEDC7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA5E7CC8-73EA-41F5-9BBC-41CE4DAEDC7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA5E7CC8-73EA-41F5-9BBC-41CE4DAEDC7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00F6E7C3-32DA-4812-B965-8116353E284B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00F6E7C3-32DA-4812-B965-8116353E284B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00F6E7C3-32DA-4812-B965-8116353E284B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00F6E7C3-32DA-4812-B965-8116353E284B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -236,6 +242,7 @@ Global
 		{9E9EEBE9-29DD-443E-88C9-E14D84BAAA5F} = {FC5D3CF3-0563-4306-B612-8274AD6E08A1}
 		{AA5E7CC8-73EA-41F5-9BBC-41CE4DAEDC7F} = {A37DA721-277C-4CC4-8F64-0159C4E55692}
 		{DEAEA8A5-0DBC-4F2D-9FDC-FCF60B20373D} = {CAA57170-FEE1-4025-813D-C502A43BC7D4}
+		{00F6E7C3-32DA-4812-B965-8116353E284B} = {DBDFDC08-4A2F-44B3-87B5-B78BF2663865}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D417AD58-6662-4DB7-BD3E-538D13985392}

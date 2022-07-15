@@ -1,0 +1,44 @@
+[
+  {
+    "ID": 3,
+    "FirstName": "Ashok",
+    "LastName": "Kumar",
+    "Email": "ashok@gmail.com",
+    "Mobile": "8989278989",
+    "Age": 27,
+    "Gender": 0,
+    "Address": "Gurgaon, Haryana, India",
+    "Zipcode": "122006",
+    "IsActive": 1,
+    "IsDeleted": 0,
+    "CreatedDate": "2022-06-28"
+  },
+  {
+    "ID": 4,
+    "FirstName": "Nazrul",
+    "LastName": "Anuar",
+    "Email": "Nazrul@gmail.com",
+    "Mobile": "8989222989",
+    "Age": 25,
+    "Gender": 0,
+    "Address": "Gurgaon, Haryana, Malaysia",
+    "Zipcode": "457444",
+    "IsActive": 1,
+    "IsDeleted": 0,
+    "CreatedDate": "2022-06-28"
+  },
+  {
+    "ID": 6,
+    "FirstName": "Dinesh",
+    "LastName": "Kumar",
+    "Email": "Dinesh@gmail.com",
+    "Mobile": "1234567890",
+    "Age": 41,
+    "Gender": 0,
+    "Address": "Harnathpur Chauk, Pakridayal, East Champaran",
+    "Zipcode": "123457",
+    "IsActive": 1,
+    "IsDeleted": 0,
+    "CreatedDate": "2022-06-28"
+  }
+]

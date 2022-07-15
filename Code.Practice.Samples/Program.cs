@@ -1,4 +1,5 @@
 ﻿using Code.Practice.Samples.Accounting;
+using Code.Practice.Samples.EnumProgram;
 using Code.Practice.Samples.Ingenio;
 using System;
 using System.Collections.Generic;
@@ -63,11 +64,11 @@ namespace Code.Practice.Samples
             //Console.WriteLine(report);
             //Console.WriteLine("GetItemsReport() Function calling is done.");
 
-            Category category = new Category();
+            //Category category = new Category();
 
-            var result201 = category.Solution(201);
-            Console.WriteLine("Category ID == 201");
-            Console.WriteLine(result201);
+            //var result201 = category.Solution(201);
+            //Console.WriteLine("Category ID == 201");
+            //Console.WriteLine(result201);
 
             //var result101 = category.Solution(101);
             //Console.WriteLine("Category ID == 101");
@@ -77,9 +78,17 @@ namespace Code.Practice.Samples
             //Console.WriteLine("Category ID == 109");
             //Console.WriteLine(result109);
 
-            var result202 = category.Solution(202);
-            Console.WriteLine("Category ID == 202");
-            Console.WriteLine(result202);
+            //var result202 = category.Solution(202);
+            //Console.WriteLine("Category ID == 202");
+            //Console.WriteLine(result202);
+
+            // Get get Enum name by its value as integer
+
+            EnumCoding enumCoding = new EnumCoding();
+            enumCoding.GetEnumName();
+
+            // iterate enum variables
+            enumCoding.IterateEnumVariables();
 
             Console.ReadLine();
         }

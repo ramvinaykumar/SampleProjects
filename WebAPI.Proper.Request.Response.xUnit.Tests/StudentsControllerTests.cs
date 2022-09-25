@@ -79,7 +79,7 @@ namespace WebAPI.Proper.Request.Response.xUnit.Tests
                 Result = studentData
             };
 
-           await _studentService.Setup(service => service.Listing()).ReturnsAsync(responseItem);
+            _studentService.Setup(service => service.Listing()).ReturnsAsync(responseItem);
 
             var response = await _studentsController.GetStudents();
             response.StatusCode.Equals(HttpStatusCode.OK);

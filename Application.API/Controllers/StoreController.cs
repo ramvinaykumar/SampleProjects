@@ -44,7 +44,7 @@ namespace Application.API.Controllers
             if (string.IsNullOrWhiteSpace(header))
                 actionResult = Unauthorized();
             else
-                _repository.GetStores(x => x.CountryCode == header).ToList();
+                actionResult = (IActionResult)_repository.GetStores(x => x.CountryCode == header).ToList();
 
             return actionResult;
         }
@@ -53,13 +53,13 @@ namespace Application.API.Controllers
         /// GetStore by Id
         /// </summary>
         /// <param name="storeId">int storeId</param>
-        /// <param name="includeCustomer">bool includeCustomer = false</param>
+        /// <param name="includeCustomers">bool includeCustomer = false</param>
         /// <returns></returns>
-        public IActionResult GetStore(int storeId, bool includeCustomer = false)
+        public IActionResult GetStore(int storeId, bool includeCustomers = false)
         {
             IActionResult actionResult = NoContent();
             var header = _httpContextAccessor.HttpContext.Request.Headers[CountryCodeHeaderName];
-            if (includeCustomer)
+            if (includeCustomers)
             {
                 var customer = _repository.GetCustomers(storeId).ToList();
                 if (customer != null && customer.Count > 0)

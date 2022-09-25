@@ -1,4 +1,5 @@
 ﻿using Code.Practice.Samples.Accounting;
+using Code.Practice.Samples.Basics;
 using Code.Practice.Samples.EnumProgram;
 using Code.Practice.Samples.Ingenio;
 using System;
@@ -84,12 +85,19 @@ namespace Code.Practice.Samples
 
             // Get get Enum name by its value as integer
 
-            EnumCoding enumCoding = new EnumCoding();
-            enumCoding.GetEnumName();
+            //EnumCoding enumCoding = new EnumCoding();
+            //enumCoding.GetEnumName();
 
             // iterate enum variables
-            enumCoding.IterateEnumVariables();
+            //enumCoding.IterateEnumVariables();
 
+            // Reverse the string
+            ReverseString reverse = new ReverseString();
+            //reverse.ReverseStringUsingForLoop("Keshav");
+            Console.WriteLine("Reversed String UsingForLoop == " + reverse.ReverseStringUsingForLoop("Keshav"));
+            Console.WriteLine("Reversed String UsingLINQ == " + reverse.ReverseStringUsingLINQ("Keshav"));
+            Console.WriteLine("Reversed String UsingInBuildFunction == " + reverse.ReverseStringUsingInBuildFunction("Keshav"));
+            Console.WriteLine("Reversed String UsingWhile == " + reverse.ReverseStringUsingWhile("Keshav"));
             Console.ReadLine();
         }
 

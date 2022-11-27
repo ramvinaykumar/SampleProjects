@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="11.0.0" />
+    <PackageReference Include="NewRelic.Agent.Api" Version="10.2.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Admin.Announcement.Business\Admin.Announcement.Business.csproj" />
+    <ProjectReference Include="..\Admin.Announcement.Core\Admin.Announcement.Core.csproj" />
+    <ProjectReference Include="..\Admin.Announcement.Models\Admin.Announcement.Models.csproj" />
+  </ItemGroup>
+
+</Project>

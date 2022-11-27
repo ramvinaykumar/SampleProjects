@@ -94,11 +94,73 @@ namespace Code.Practice.Samples
             // Reverse the string
             ReverseString reverse = new ReverseString();
             //reverse.ReverseStringUsingForLoop("Keshav");
-            Console.WriteLine("Reversed String UsingForLoop == " + reverse.ReverseStringUsingForLoop("Keshav"));
-            Console.WriteLine("Reversed String UsingLINQ == " + reverse.ReverseStringUsingLINQ("Keshav"));
-            Console.WriteLine("Reversed String UsingInBuildFunction == " + reverse.ReverseStringUsingInBuildFunction("Keshav"));
-            Console.WriteLine("Reversed String UsingWhile == " + reverse.ReverseStringUsingWhile("Keshav"));
+            //Console.WriteLine("Reversed String UsingForLoop == " + reverse.ReverseStringUsingForLoop("Keshav"));
+            //Console.WriteLine("Reversed String UsingLINQ == " + reverse.ReverseStringUsingLINQ("Keshav"));
+            //Console.WriteLine("Reversed String UsingInBuildFunction == " + reverse.ReverseStringUsingInBuildFunction("Keshav"));
+            //Console.WriteLine("Reversed String UsingWhile == " + reverse.ReverseStringUsingWhile("Keshav"));
+
+
+            //var validCharacter = "()[]{}";
+            //var inputStringCorrect = "()[]{}";
+            //var wrongData = "(]";
+            //var isFound = false;
+            //var validateArray = inputStringCorrect.ToCharArray();
+
+            //for (int i = 0; i < validateArray.Length; i++)
+            //{
+            //    var data = validateArray[i].ToString();
+            //    if ((data.StartsWith('(') && (data.EndsWith(')'))) || ((data.StartsWith('[')) && (data.EndsWith(']'))) || ((data.StartsWith('{')) && (data.EndsWith('}'))))
+            //    {
+            //        isFound = true;
+            //    }
+            //}
+            //Console.WriteLine("The output is like ==>" + isFound);
+
+            // Remove adjusent character
+
+            string str9 = "acbbcdd";
+            Console.Write(remove(str9) + "\n");
+
             Console.ReadLine();
+        }
+
+        private static string removeString(string str, char last_removed)
+        {
+            if (str.Length == 0 || str.Length == 1)
+                return str;
+
+            if (str[0] == str[1])
+            {
+                last_removed = str[0];
+                while (str.Length > 1 && str[0] ==
+                       str[1])
+                {
+                    str = str.Substring(1, str.Length - 1);
+                }
+                str = str.Substring(1, str.Length - 1);
+                return removeString(str, last_removed);
+            }
+
+            string rem_str = removeString(str.Substring(1, str.Length - 1), last_removed);
+
+            if (rem_str.Length != 0 && rem_str[0] == str[0])
+            {
+                last_removed = str[0];
+
+                // Remove first character
+                return rem_str.Substring(1, rem_str.Length - 1);
+            }
+
+            if (rem_str.Length == 0 && last_removed == str[0])
+                return rem_str;
+
+            return (str[0] + rem_str);
+        }
+
+        static string remove(string str)
+        {
+            char last_removed = '\0';
+            return removeString(str, last_removed);
         }
 
         /// <summary>

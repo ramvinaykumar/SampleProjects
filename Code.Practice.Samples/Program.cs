@@ -5,6 +5,7 @@ using Code.Practice.Samples.Ingenio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace Code.Practice.Samples
 {
@@ -118,8 +119,16 @@ namespace Code.Practice.Samples
 
             // Remove adjusent character
 
-            string str9 = "acbbcdd";
-            Console.Write(remove(str9) + "\n");
+            //string str9 = "acbbcdd";
+            //Console.Write(remove(str9) + "\n");
+
+            // Convert byte array
+            byte[] byteArray = Encoding.Default.GetBytes("1111111111");
+            Console.WriteLine($"Byte Array is: {string.Join(" ", byteArray)}");
+            string str = Encoding.Default.GetString(byteArray);
+            Console.WriteLine($"String is: {str}");
+            byte[] encodedByteArray = Encoding.Default.GetBytes((str));
+            Console.WriteLine($"Encoded ByteArray is: {string.Join(" ", encodedByteArray)}");
 
             Console.ReadLine();
         }

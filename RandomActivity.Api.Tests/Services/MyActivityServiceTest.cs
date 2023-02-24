@@ -2,12 +2,13 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using Moq.Protected;
+using NUnit.Framework;
 using RandomActivity.API.Models;
 using RandomActivity.API.Services;
 using System.Net;
 using System.Net.Http.Json;
 
-namespace RandomActivity.Api.Tests
+namespace RandomActivity.Api.Tests.Services
 {
     public class MyActivityServiceTests
     {
@@ -66,7 +67,7 @@ namespace RandomActivity.Api.Tests
             // create the HttpClient
             var httpClient = new HttpClient(httpMessageHandlerMock.Object)
             {
-                BaseAddress = new System.Uri("http://localhost") // It should be in valid uri format.
+                BaseAddress = new Uri("http://localhost") // It should be in valid uri format.
             };
 
             return httpClient;

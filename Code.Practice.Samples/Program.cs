@@ -1,11 +1,9 @@
 ﻿using Code.Practice.Samples.Accounting;
+using Code.Practice.Samples.BankAccountNumberValidation;
 using Code.Practice.Samples.Basics;
-using Code.Practice.Samples.EnumProgram;
-using Code.Practice.Samples.Ingenio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Code.Practice.Samples
 {
@@ -123,12 +121,24 @@ namespace Code.Practice.Samples
             //Console.Write(remove(str9) + "\n");
 
             // Convert byte array
-            byte[] byteArray = Encoding.Default.GetBytes("1111111111");
-            Console.WriteLine($"Byte Array is: {string.Join(" ", byteArray)}");
-            string str = Encoding.Default.GetString(byteArray);
-            Console.WriteLine($"String is: {str}");
-            byte[] encodedByteArray = Encoding.Default.GetBytes((str));
-            Console.WriteLine($"Encoded ByteArray is: {string.Join(" ", encodedByteArray)}");
+            //byte[] byteArray = Encoding.Default.GetBytes("1111111111");
+            //Console.WriteLine($"Byte Array is: {string.Join(" ", byteArray)}");
+            //string str = Encoding.Default.GetString(byteArray);
+            //Console.WriteLine($"String is: {str}");
+            //byte[] encodedByteArray = Encoding.Default.GetBytes((str));
+            //Console.WriteLine($"Encoded ByteArray is: {string.Join(" ", encodedByteArray)}");
+
+            // Validate the given bank account number with correct format
+            //ValidatePaymentInputRequestDto inputRequestDto = new ValidatePaymentInputRequestDto();
+            //inputRequestDto.BankName = "OCBC";
+            //inputRequestDto.BankAccountNumber = "9999999999"; // DBS
+            //inputRequestDto.BankAccountNumber = "999999999"; // POSB
+            //inputRequestDto.BankAccountNumber = "9999999999"; // OCBC
+            //inputRequestDto.BankAccountNumber = "999999999999"; // OCBC
+            //inputRequestDto.BankAccountNumber = "9999999999"; // UOB
+
+            //BankAccountValidationService validationService = new BankAccountValidationService();
+            //validationService.A55ValidatePaymentInputAsync(inputRequestDto);
 
             Console.ReadLine();
         }

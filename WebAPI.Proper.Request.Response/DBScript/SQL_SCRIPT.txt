@@ -1,0 +1,103 @@
+﻿/****** Object:  Table [dbo].[City]    Script Date: 31-Mar-23 3:02:31 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[City](
+	[CityID] [int] IDENTITY(1,1) NOT NULL,
+	[StateID] [int] NOT NULL,
+	[CityName] [nvarchar](100) NOT NULL,
+	[IsDeleted] [bit] NOT NULL,
+ CONSTRAINT [PK_City] PRIMARY KEY CLUSTERED 
+(
+	[CityID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Country]    Script Date: 31-Mar-23 3:02:31 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Country](
+	[CountryID] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](128) NOT NULL,
+	[ISO3] [nvarchar](6) NULL,
+	[ISO2] [nvarchar](4) NULL,
+	[Code] [nvarchar](10) NULL,
+	[PhoneCode] [nvarchar](10) NULL,
+	[Capital] [nvarchar](100) NOT NULL,
+	[Currency] [nvarchar](10) NULL,
+	[CurrencyName] [nvarchar](50) NULL,
+	[CurrencySymbol] [nvarchar](10) NULL,
+	[Region] [nvarchar](50) NOT NULL,
+	[Subregion] [nvarchar](100) NULL,
+	[IsDeleted] [bit] NOT NULL,
+ CONSTRAINT [PK_Country] PRIMARY KEY CLUSTERED 
+(
+	[CountryID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[State]    Script Date: 31-Mar-23 3:02:31 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[State](
+	[StateID] [int] IDENTITY(1,1) NOT NULL,
+	[CountryID] [int] NOT NULL,
+	[Name] [nvarchar](100) NULL,
+	[IsDeleted] [bit] NULL,
+ CONSTRAINT [PK_State] PRIMARY KEY CLUSTERED 
+(
+	[StateID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[City] ADD  CONSTRAINT [DF_City_StateID]  DEFAULT ((0)) FOR [StateID]
+GO
+ALTER TABLE [dbo].[City] ADD  CONSTRAINT [DF_City_StateName]  DEFAULT ('') FOR [CityName]
+GO
+ALTER TABLE [dbo].[City] ADD  CONSTRAINT [DF_City_IsDeleted]  DEFAULT ((0)) FOR [IsDeleted]
+GO
+ALTER TABLE [dbo].[Country] ADD  CONSTRAINT [DF_Country_Name]  DEFAULT ('') FOR [Name]
+GO
+ALTER TABLE [dbo].[Country] ADD  CONSTRAINT [DF_Country_ISO3]  DEFAULT ('') FOR [ISO3]
+GO
+ALTER TABLE [dbo].[Country] ADD  CONSTRAINT [DF_Country_ISO2]  DEFAULT ('') FOR [ISO2]
+GO
+ALTER TABLE [dbo].[Country] ADD  CONSTRAINT [DF_Country_Code]  DEFAULT ('') FOR [Code]
+GO
+ALTER TABLE [dbo].[Country] ADD  CONSTRAINT [DF_Country_PhoneCode]  DEFAULT ('') FOR [PhoneCode]
+GO
+ALTER TABLE [dbo].[Country] ADD  CONSTRAINT [DF_Country_Capital]  DEFAULT ('') FOR [Capital]
+GO
+ALTER TABLE [dbo].[Country] ADD  CONSTRAINT [DF_Country_Currency]  DEFAULT ('') FOR [Currency]
+GO
+ALTER TABLE [dbo].[Country] ADD  CONSTRAINT [DF_Country_CurrencyName]  DEFAULT ('') FOR [CurrencyName]
+GO
+ALTER TABLE [dbo].[Country] ADD  CONSTRAINT [DF_Country_CurrencySymbol]  DEFAULT ('') FOR [CurrencySymbol]
+GO
+ALTER TABLE [dbo].[Country] ADD  CONSTRAINT [DF_Country_Region]  DEFAULT ('') FOR [Region]
+GO
+ALTER TABLE [dbo].[Country] ADD  CONSTRAINT [DF_Country_Subregion]  DEFAULT ('') FOR [Subregion]
+GO
+ALTER TABLE [dbo].[Country] ADD  CONSTRAINT [DF_Country_IsDeleted]  DEFAULT ((0)) FOR [IsDeleted]
+GO
+ALTER TABLE [dbo].[State] ADD  CONSTRAINT [DF_Table_1_CountryID]  DEFAULT ((0)) FOR [CountryID]
+GO
+ALTER TABLE [dbo].[State] ADD  CONSTRAINT [DF_Table_1_Name]  DEFAULT ('') FOR [Name]
+GO
+ALTER TABLE [dbo].[State] ADD  CONSTRAINT [DF_Table_1_IsDeleted]  DEFAULT ((0)) FOR [IsDeleted]
+GO
+ALTER TABLE [dbo].[City]  WITH CHECK ADD  CONSTRAINT [FK_City_State] FOREIGN KEY([StateID])
+REFERENCES [dbo].[State] ([StateID])
+GO
+ALTER TABLE [dbo].[City] CHECK CONSTRAINT [FK_City_State]
+GO
+ALTER TABLE [dbo].[State]  WITH CHECK ADD  CONSTRAINT [FK_State_Country] FOREIGN KEY([CountryID])
+REFERENCES [dbo].[Country] ([CountryID])
+GO
+ALTER TABLE [dbo].[State] CHECK CONSTRAINT [FK_State_Country]
+GO

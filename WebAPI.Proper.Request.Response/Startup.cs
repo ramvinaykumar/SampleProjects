@@ -42,6 +42,7 @@ namespace WebAPI.Proper.Request.Response
             });
             services.AddTransient<IStudentServices, StudentServices>();
             services.AddTransient<ICampaignService, CampaignService>();
+            services.AddTransient<ICountryDataService, CountryDataService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -11,6 +11,7 @@ namespace WebAPI.Proper.Request.Response.Common.AppDbContext
             services.AddDbContext<ApiDbContext>(options =>
             {
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"), x => x.UseNetTopologySuite());
+                options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
             });
 
             services.AddTransient<ApiDbContext>();

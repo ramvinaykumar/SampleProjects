@@ -232,8 +232,8 @@ namespace WebAPI.Proper.Request.Response.Repository.Services
 
                 if (await _context.Country.AnyAsync(x => x.CountryID == Id))
                 {
-                    var Countrys = await _context.Country.Where(x => x.CountryID == Id).FirstOrDefaultAsync();
-                    if (Countrys != null && Countrys.IsDeleted)
+                    var country = await _context.Country.Where(x => x.CountryID == Id).FirstOrDefaultAsync();
+                    if (country != null && country.IsDeleted)
                     {
                         response.Count = 0;
                         response.Result = false;
@@ -243,9 +243,10 @@ namespace WebAPI.Proper.Request.Response.Repository.Services
                     }
                     else
                     {
-                        Countrys.IsDeleted = true;
-
+                        country.IsDeleted = true;
+                        _context.Update(country);
                         var status = await _context.SaveChangesAsync();
+                        
                         if (status > 0)
                         {
                             response.Count = status;

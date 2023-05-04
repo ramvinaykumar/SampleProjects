@@ -6,10 +6,10 @@
 
   <ItemGroup>
     <Folder Include="City\" />
-    <Folder Include="State\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
     <PackageReference Include="FluentValidation" Version="11.5.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>

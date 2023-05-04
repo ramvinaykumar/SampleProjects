@@ -4,6 +4,7 @@ using Code.Practice.Samples.Basics;
 using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 namespace Code.Practice.Samples
@@ -181,6 +182,74 @@ namespace Code.Practice.Samples
             var x = PassDate.ToString(dateFormat);
             Console.WriteLine("DateTimeOffset into string format " + x);
 
+            //var dob = "19680421";
+            //DateTimeOffset? dateOfBirth = new DateTimeOffset();
+            //IFormatProvider provider = CultureInfo.InvariantCulture.DateTimeFormat;
+
+            //try
+            //{
+            //    dateOfBirth = DateTimeOffset.ParseExact(dob, @"yyyyMdd", provider, DateTimeStyles.AllowWhiteSpaces);
+            //    dateOfBirth = DateTimeOffset.ParseExact(dob, @"yyyyddMM", provider, DateTimeStyles.AllowWhiteSpaces);
+            //    Console.WriteLine("DateTimeOffset.ParseExact " + dateOfBirth);
+            //}
+            //catch (Exception ex)
+            //{
+            //    dateOfBirth = null;
+            //}
+
+            // 24 Hours
+            DateTimeOffset? dob = new DateTimeOffset();
+
+            IFormatProvider provider = CultureInfo.InvariantCulture.DateTimeFormat;
+            var dateOfBirth = "19680421";
+
+            try
+            {
+                DateTimeOffset currentDate = DateTime.Now;
+               
+
+                dob = DateTimeOffset.ParseExact(dateOfBirth, @"yyyyddM", provider, DateTimeStyles.AllowWhiteSpaces);
+              
+
+                DateTime validDate = new DateTime(currentDate.Year - 55, currentDate.Month, currentDate.Day);
+                TimeSpan validAge = currentDate.Subtract(validDate);
+                TimeSpan actualAge = currentDate.Subtract(dob.Value);
+
+                decimal diffInDays = Convert.ToDecimal(actualAge.Subtract(validAge).Days);
+
+                //submission date >= Member's 55 birthdate
+                Console.WriteLine("submission date >= Member's 55 birthdate " + diffInDays);
+            }
+            catch (Exception e)
+            {
+                dob = null;
+            }
+
+            //Console.WriteLine("DateTimeOffset dateOfBirth " + dateOfBirth);
+
+            var bankNumber = "931-42172-1";
+            var kjlj = "";
+            if (bankNumber.Contains('-'))
+                kjlj = bankNumber.Replace("-", "");
+
+            bankNumber = kjlj.Trim();
+
+            var result = bankNumber.Substring(bankNumber.Length - 3);
+            Console.WriteLine("Last 3 Digit of bank number ==>> " + result);
+
+            var smsContent = "Dear %%MASKED_NRIC%%, your CPF withdrawal application submitted on %%SUBMITTED_DATE%% has been processed and $%%PROCESSED_AMOUNT%% has been deducted from your CPF account." + Environment.NewLine + Environment.NewLine + "Monies will be credited to your %%BANK_NAME%% bank account (ending %%BANKACCOUNT_NUMBER%%) within 2 working days. Please check 'My Activities' in 'my cpf Online Services' for more details. " + Environment.NewLine + Environment.NewLine + "If unauthorised, please contact your bank to freeze your bank account immediately, and reset your Singpass (for assistance, call Singpass' 24/7 helpdesk at +65 6335 3533).";
+            Console.WriteLine("smsContent ==>> " + smsContent);
+
+            // Format the amount:
+            double requestedAmount = 40.0100;
+            var formattedAmount = string.Format("{0:0.00}", requestedAmount);
+            Console.WriteLine("Formatted Decimal Amount ==>> "+ formattedAmount);
+
+            string strJoin = string.Format("CPF Withdrawal Request on {0} Cancelled", requestedAmount);
+            Console.WriteLine("string.Format output ==>> " + strJoin);
+
+            string concatenatedThree = string.Join(" ", "CPF Withdrawal Request on", requestedAmount, "Cancelled");
+            Console.WriteLine("concatenatedThree output ==>> " + concatenatedThree);
             Console.ReadLine();
         }
 

@@ -2,7 +2,7 @@
 
 namespace WebAPI.Proper.Request.Response.Models.Country
 {
-    public class CountryRequestDtoValidator : AbstractValidator<CountryRequestDto>
+    public class CountryRequestDtoValidator : AbstractValidator<CountryEntity>
     {
         public CountryRequestDtoValidator()
         {

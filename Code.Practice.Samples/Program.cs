@@ -1,6 +1,9 @@
 ﻿using Code.Practice.Samples.Accounting;
 using Code.Practice.Samples.BankAccountNumberValidation;
 using Code.Practice.Samples.Basics;
+using Code.Practice.Samples.Common;
+using Code.Practice.Samples.EnumProgram;
+using Code.Practice.Samples.RnD;
 using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
@@ -250,7 +253,47 @@ namespace Code.Practice.Samples
 
             string concatenatedThree = string.Join(" ", "CPF Withdrawal Request on", requestedAmount, "Cancelled");
             Console.WriteLine("concatenatedThree output ==>> " + concatenatedThree);
+
+            Console.WriteLine("A55WithdrawalStatus.C.ToString()  ==>> " + A55WithdrawalStatus.C.ToString());
+
+            Console.WriteLine("CodeRequestStatus.code11  ==>> " + CodeRequestStatus.code11.GetEnumDescription());
+            Console.WriteLine("CodeRequestStatus.code83  ==>> " + CodeRequestStatus.code83.GetEnumDescription());
+            Console.WriteLine("CodeRequestStatus.code3  ==>> " + CodeRequestStatus.code3.GetEnumDescription());
+
+            var transactionStatus = StatusCode.GetTransactionStatus(3, 0);
+            var finalStatus = transactionStatus.GetEnumStringCode();
+
+            Console.WriteLine("Status generated from the service GetTransactionStatus ==>> " + finalStatus + " -- " + transactionStatus.GetEnumDescription() + " CodeRequestStatus.code83 -- " + (int)CodeRequestStatus.code83);
+            Console.WriteLine("transactionStatus ==>> " + finalStatus + " -- " + (int)transactionStatus);
+
+            var raStatus = StatusCode.GetRAWithdrawalStatus("C");
+            Console.WriteLine("GetRAWithdrawalStatus ==>> " + raStatus);
+
+            var code83 = Convert.ToString( (int)CodeRequestStatus.code83);
+            var code83String = CodeRequestStatus.code83.GetEnumStringCode();
+
+
+            Console.WriteLine("transactionStatus ==>> " + code83 );
+            Console.WriteLine("transactionStatus ==>> " + code83String);
+
             Console.ReadLine();
+        }
+
+
+        public enum A55WithdrawalStatus
+        {
+            
+            None,
+            
+            SC,
+            
+            PQP,
+            
+            PV,
+           
+            RJ,
+          
+            C
         }
 
         private static string removeString(string str, char last_removed)

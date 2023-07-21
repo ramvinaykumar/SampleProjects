@@ -92,7 +92,7 @@ namespace Core6.EFDbFirst.API.Repository.Services
             return Encoding.Default.GetBytes(plainText);
         }
 
-        public string ByteArrayToString(byte[] accountNumber)
+        private string ByteArrayToString(byte[] accountNumber)
         {
             //string base64EncodedData = Encoding.UTF8.GetString(accountNumber);
             //var base64EncodedBytes = Convert.FromBase64String(base64EncodedData);

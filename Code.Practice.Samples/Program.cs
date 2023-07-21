@@ -3,12 +3,14 @@ using Code.Practice.Samples.BankAccountNumberValidation;
 using Code.Practice.Samples.Basics;
 using Code.Practice.Samples.Common;
 using Code.Practice.Samples.EnumProgram;
+using Code.Practice.Samples.NotificationEvent;
 using Code.Practice.Samples.RnD;
 using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Text.Json;
 
 namespace Code.Practice.Samples
 {
@@ -209,10 +211,10 @@ namespace Code.Practice.Samples
             try
             {
                 DateTimeOffset currentDate = DateTime.Now;
-               
+
 
                 dob = DateTimeOffset.ParseExact(dateOfBirth, @"yyyyddM", provider, DateTimeStyles.AllowWhiteSpaces);
-              
+
 
                 DateTime validDate = new DateTime(currentDate.Year - 55, currentDate.Month, currentDate.Day);
                 TimeSpan validAge = currentDate.Subtract(validDate);
@@ -221,7 +223,7 @@ namespace Code.Practice.Samples
                 decimal diffInDays = Convert.ToDecimal(actualAge.Subtract(validAge).Days);
 
                 //submission date >= Member's 55 birthdate
-                Console.WriteLine("submission date >= Member's 55 birthdate " + diffInDays);
+                //Console.WriteLine("submission date >= Member's 55 birthdate " + diffInDays);
             }
             catch (Exception e)
             {
@@ -238,43 +240,71 @@ namespace Code.Practice.Samples
             bankNumber = kjlj.Trim();
 
             var result = bankNumber.Substring(bankNumber.Length - 3);
-            Console.WriteLine("Last 3 Digit of bank number ==>> " + result);
+            //Console.WriteLine("Last 3 Digit of bank number ==>> " + result);
 
             var smsContent = "Dear %%MASKED_NRIC%%, your CPF withdrawal application submitted on %%SUBMITTED_DATE%% has been processed and $%%PROCESSED_AMOUNT%% has been deducted from your CPF account." + Environment.NewLine + Environment.NewLine + "Monies will be credited to your %%BANK_NAME%% bank account (ending %%BANKACCOUNT_NUMBER%%) within 2 working days. Please check 'My Activities' in 'my cpf Online Services' for more details. " + Environment.NewLine + Environment.NewLine + "If unauthorised, please contact your bank to freeze your bank account immediately, and reset your Singpass (for assistance, call Singpass' 24/7 helpdesk at +65 6335 3533).";
-            Console.WriteLine("smsContent ==>> " + smsContent);
+            //Console.WriteLine("smsContent ==>> " + smsContent);
 
             // Format the amount:
             double requestedAmount = 40.0100;
             var formattedAmount = string.Format("{0:0.00}", requestedAmount);
-            Console.WriteLine("Formatted Decimal Amount ==>> "+ formattedAmount);
+            //Console.WriteLine("Formatted Decimal Amount ==>> "+ formattedAmount);
 
             string strJoin = string.Format("CPF Withdrawal Request on {0} Cancelled", requestedAmount);
-            Console.WriteLine("string.Format output ==>> " + strJoin);
+            //Console.WriteLine("string.Format output ==>> " + strJoin);
 
             string concatenatedThree = string.Join(" ", "CPF Withdrawal Request on", requestedAmount, "Cancelled");
-            Console.WriteLine("concatenatedThree output ==>> " + concatenatedThree);
+            //Console.WriteLine("concatenatedThree output ==>> " + concatenatedThree);
 
-            Console.WriteLine("A55WithdrawalStatus.C.ToString()  ==>> " + A55WithdrawalStatus.C.ToString());
+            //Console.WriteLine("A55WithdrawalStatus.C.ToString()  ==>> " + A55WithdrawalStatus.C.ToString());
 
-            Console.WriteLine("CodeRequestStatus.code11  ==>> " + CodeRequestStatus.code11.GetEnumDescription());
-            Console.WriteLine("CodeRequestStatus.code83  ==>> " + CodeRequestStatus.code83.GetEnumDescription());
-            Console.WriteLine("CodeRequestStatus.code3  ==>> " + CodeRequestStatus.code3.GetEnumDescription());
+            // Console.WriteLine("CodeRequestStatus.code11  ==>> " + CodeRequestStatus.code11.GetEnumDescription());
+            //  Console.WriteLine("CodeRequestStatus.code83  ==>> " + CodeRequestStatus.code83.GetEnumDescription());
+            //Console.WriteLine("CodeRequestStatus.code3  ==>> " + CodeRequestStatus.code3.GetEnumDescription());
 
             var transactionStatus = StatusCode.GetTransactionStatus(3, 0);
             var finalStatus = transactionStatus.GetEnumStringCode();
 
-            Console.WriteLine("Status generated from the service GetTransactionStatus ==>> " + finalStatus + " -- " + transactionStatus.GetEnumDescription() + " CodeRequestStatus.code83 -- " + (int)CodeRequestStatus.code83);
-            Console.WriteLine("transactionStatus ==>> " + finalStatus + " -- " + (int)transactionStatus);
+            // Console.WriteLine("Status generated from the service GetTransactionStatus ==>> " + finalStatus + " -- " + transactionStatus.GetEnumDescription() + " CodeRequestStatus.code83 -- " + (int)CodeRequestStatus.code83);
+            // Console.WriteLine("transactionStatus ==>> " + finalStatus + " -- " + (int)transactionStatus);
 
             var raStatus = StatusCode.GetRAWithdrawalStatus("C");
-            Console.WriteLine("GetRAWithdrawalStatus ==>> " + raStatus);
+            // Console.WriteLine("GetRAWithdrawalStatus ==>> " + raStatus);
 
-            var code83 = Convert.ToString( (int)CodeRequestStatus.code83);
+            var code83 = Convert.ToString((int)CodeRequestStatus.code83);
             var code83String = CodeRequestStatus.code83.GetEnumStringCode();
 
 
-            Console.WriteLine("transactionStatus ==>> " + code83 );
-            Console.WriteLine("transactionStatus ==>> " + code83String);
+            //Console.WriteLine("transactionStatus ==>> " + code83 );
+            // Console.WriteLine("transactionStatus ==>> " + code83String);
+
+            decimal? REQAMOUNT = 30000;
+            var REQUESTED_AMOUNT = "30000";
+
+            var requestedAmountValue = string.Format("{0:0.00}", REQAMOUNT);// Math.Round(decimal.Parse(REQUESTED_AMOUNT), 2);
+                                                                            // Console.WriteLine("Decimal value requestedAmountValue ==>> " + requestedAmountValue);
+
+            decimal decimalValue1 = Decimal.Parse(REQUESTED_AMOUNT, System.Globalization.CultureInfo.InvariantCulture);
+            string textValue = decimalValue1.ToString("0.00");
+
+            //Console.WriteLine("Decimal value textValue ==>> " + textValue);
+
+            Console.WriteLine("AddCurrencyAmount Decimal value ==>> " + AddCurrencyAmount(REQAMOUNT ?? 0m));
+            CreateNotificationEvent notificationEvent = new CreateNotificationEvent
+            (
+                //BodyType = "HTML",
+                //CPFAccountNumber = "ictk_~Tq_Te8#F",
+                //Email = "test@gcc.gov.sg",
+                //FromMS = "Retirement",
+                ////ID = new Guid("79e165cf-b1d8-41cb-8326-721190f02fdb"),
+                //OperationID = ""
+                "SMS", "PA55IM0PLRSMS01", "FORM_TITLE", "Withdrawal Request", "test@test.com", "99009900", "HTML", "", "", "", ""
+            );
+
+            Console.WriteLine("Class object details " + JsonSerializer.Serialize(notificationEvent));
+
+            var sms_A55RA_RequestedAmount_PayNowLinebreak_Content = "Dear %%MASKED_NRIC%%, your request to withdraw $%%REQUESTED_AMOUNT%% from your CPF savings, submitted on %%SUBMITTED_DATE%%, has been processed. Please check 'My Activities' in 'my cpf Online Services' for more details." + Environment.NewLine + Environment.NewLine + "If unauthorised, please contact your bank to freeze your bank account immediately, and reset your Singpass (for assistance, call Singpass' 24/7 helpdesk at +65 6335 3533).";
+            Console.WriteLine("sms_A55RA_RequestedAmount_PayNowLinebreak_Content " + sms_A55RA_RequestedAmount_PayNowLinebreak_Content);
 
             Console.ReadLine();
         }
@@ -282,17 +312,17 @@ namespace Code.Practice.Samples
 
         public enum A55WithdrawalStatus
         {
-            
+
             None,
-            
+
             SC,
-            
+
             PQP,
-            
+
             PV,
-           
+
             RJ,
-          
+
             C
         }
 
@@ -544,6 +574,11 @@ namespace Code.Practice.Samples
                 CombinationUtil(N, sum, currSum + i, i, combinationList);
                 combinationList.Remove(combinationList.Count - 1);
             }
+        }
+
+        public static string AddCurrencyAmount(decimal amt)
+        {
+            return amt.ToString("C", CultureInfo.CreateSpecificCulture("en-US")).Remove(0, 1);
         }
 
         /// <summary>

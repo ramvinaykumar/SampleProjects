@@ -1,11 +1,16 @@
 ﻿using Code.Practice.Samples.Accounting;
+using Code.Practice.Samples.BankAccountNumberValidation;
 using Code.Practice.Samples.Basics;
+using Code.Practice.Samples.Common;
 using Code.Practice.Samples.EnumProgram;
-using Code.Practice.Samples.Ingenio;
+using Code.Practice.Samples.NotificationEvent;
+using Code.Practice.Samples.RnD;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
-using System.Text;
+using System.Text.Json;
 
 namespace Code.Practice.Samples
 {
@@ -123,14 +128,202 @@ namespace Code.Practice.Samples
             //Console.Write(remove(str9) + "\n");
 
             // Convert byte array
-            byte[] byteArray = Encoding.Default.GetBytes("1111111111");
-            Console.WriteLine($"Byte Array is: {string.Join(" ", byteArray)}");
-            string str = Encoding.Default.GetString(byteArray);
-            Console.WriteLine($"String is: {str}");
-            byte[] encodedByteArray = Encoding.Default.GetBytes((str));
-            Console.WriteLine($"Encoded ByteArray is: {string.Join(" ", encodedByteArray)}");
+            //byte[] byteArray = Encoding.Default.GetBytes("1111111111");
+            //Console.WriteLine($"Byte Array is: {string.Join(" ", byteArray)}");
+            //string str = Encoding.Default.GetString(byteArray);
+            //Console.WriteLine($"String is: {str}");
+            //byte[] encodedByteArray = Encoding.Default.GetBytes((str));
+            //Console.WriteLine($"Encoded ByteArray is: {string.Join(" ", encodedByteArray)}");
+
+            // Validate the given bank account number with correct format
+            //ValidatePaymentInputRequestDto inputRequestDto = new ValidatePaymentInputRequestDto();
+            //inputRequestDto.BankName = "OCBC";
+            //inputRequestDto.BankAccountNumber = "9999999999"; // DBS
+            //inputRequestDto.BankAccountNumber = "999999999"; // POSB
+            //inputRequestDto.BankAccountNumber = "9999999999"; // OCBC
+            //inputRequestDto.BankAccountNumber = "999999999999"; // OCBC
+            //inputRequestDto.BankAccountNumber = "9999999999"; // UOB
+
+            //BankAccountValidationService validationService = new BankAccountValidationService();
+            //validationService.A55ValidatePaymentInputAsync(inputRequestDto);
+
+
+            // Get current DateTime. It can be any DateTime object in your code.
+            DateTime aDate = DateTime.Now;
+
+            // Format Datetime in different formats and display them
+            Console.WriteLine(aDate.ToString("MM/dd/yyyy"));
+            Console.WriteLine(aDate.ToString("dd MMM yyyy hh:mm tt"));
+            Console.WriteLine(aDate.ToString("dddd, dd MMMM yyyy"));
+            Console.WriteLine(aDate.ToString("dddd, dd MMMM yyyy"));
+            Console.WriteLine(aDate.ToString("dddd, dd MMMM yyyy"));
+            Console.WriteLine(aDate.ToString("dddd, dd MMMM yyyy"));
+            Console.WriteLine(aDate.ToString("dddd, dd MMMM yyyy HH:mm:ss"));
+            Console.WriteLine(aDate.ToString("MM/dd/yyyy HH:mm"));
+            Console.WriteLine(aDate.ToString("MM/dd/yyyy hh:mm tt"));
+            Console.WriteLine(aDate.ToString("MM/dd/yyyy H:mm"));
+            Console.WriteLine(aDate.ToString("MM/dd/yyyy h:mm tt"));
+            Console.WriteLine(aDate.ToString("MM/dd/yyyy HH:mm:ss"));
+            Console.WriteLine(aDate.ToString("MMMM dd"));
+            Console.WriteLine(aDate.ToString("yyyy’-‘MM’-‘dd’T’HH’:’mm’:’ss.fffffffK"));
+            Console.WriteLine(aDate.ToString("ddd, dd MMM yyy HH’:’mm’:’ss ‘GMT’"));
+            Console.WriteLine(aDate.ToString("yyyy’-‘MM’-‘dd’T’HH’:’mm’:’ss"));
+            Console.WriteLine(aDate.ToString("HH:mm"));
+            Console.WriteLine(aDate.ToString("hh:mm tt"));
+            Console.WriteLine(aDate.ToString("H:mm"));
+            Console.WriteLine(aDate.ToString("h:mm tt"));
+            Console.WriteLine(aDate.ToString("HH:mm:ss"));
+            Console.WriteLine(aDate.ToString("yyyy MMMM"));
+
+            // Decimal Issue
+            var stringValue = string.Empty;
+            var decimalValue = string.IsNullOrEmpty(stringValue) ? 0 : Convert.ToDecimal(stringValue);
+            DateTimeOffset thisDate;
+            thisDate = DateTimeOffset.UtcNow;
+            Console.WriteLine("DateTimeOffset into string format " + thisDate.ToString("dd MMM yyyy"));
+
+            DateTimeOffset PassDate = DateTimeOffset.Now;
+            var dateFormat = "dd MMM yyyy";
+            var x = PassDate.ToString(dateFormat);
+            Console.WriteLine("DateTimeOffset into string format " + x);
+
+            //var dob = "19680421";
+            //DateTimeOffset? dateOfBirth = new DateTimeOffset();
+            //IFormatProvider provider = CultureInfo.InvariantCulture.DateTimeFormat;
+
+            //try
+            //{
+            //    dateOfBirth = DateTimeOffset.ParseExact(dob, @"yyyyMdd", provider, DateTimeStyles.AllowWhiteSpaces);
+            //    dateOfBirth = DateTimeOffset.ParseExact(dob, @"yyyyddMM", provider, DateTimeStyles.AllowWhiteSpaces);
+            //    Console.WriteLine("DateTimeOffset.ParseExact " + dateOfBirth);
+            //}
+            //catch (Exception ex)
+            //{
+            //    dateOfBirth = null;
+            //}
+
+            // 24 Hours
+            DateTimeOffset? dob = new DateTimeOffset();
+
+            IFormatProvider provider = CultureInfo.InvariantCulture.DateTimeFormat;
+            var dateOfBirth = "19680421";
+
+            try
+            {
+                DateTimeOffset currentDate = DateTime.Now;
+
+
+                dob = DateTimeOffset.ParseExact(dateOfBirth, @"yyyyddM", provider, DateTimeStyles.AllowWhiteSpaces);
+
+
+                DateTime validDate = new DateTime(currentDate.Year - 55, currentDate.Month, currentDate.Day);
+                TimeSpan validAge = currentDate.Subtract(validDate);
+                TimeSpan actualAge = currentDate.Subtract(dob.Value);
+
+                decimal diffInDays = Convert.ToDecimal(actualAge.Subtract(validAge).Days);
+
+                //submission date >= Member's 55 birthdate
+                //Console.WriteLine("submission date >= Member's 55 birthdate " + diffInDays);
+            }
+            catch (Exception e)
+            {
+                dob = null;
+            }
+
+            //Console.WriteLine("DateTimeOffset dateOfBirth " + dateOfBirth);
+
+            var bankNumber = "931-42172-1";
+            var kjlj = "";
+            if (bankNumber.Contains('-'))
+                kjlj = bankNumber.Replace("-", "");
+
+            bankNumber = kjlj.Trim();
+
+            var result = bankNumber.Substring(bankNumber.Length - 3);
+            //Console.WriteLine("Last 3 Digit of bank number ==>> " + result);
+
+            var smsContent = "Dear %%MASKED_NRIC%%, your CPF withdrawal application submitted on %%SUBMITTED_DATE%% has been processed and $%%PROCESSED_AMOUNT%% has been deducted from your CPF account." + Environment.NewLine + Environment.NewLine + "Monies will be credited to your %%BANK_NAME%% bank account (ending %%BANKACCOUNT_NUMBER%%) within 2 working days. Please check 'My Activities' in 'my cpf Online Services' for more details. " + Environment.NewLine + Environment.NewLine + "If unauthorised, please contact your bank to freeze your bank account immediately, and reset your Singpass (for assistance, call Singpass' 24/7 helpdesk at +65 6335 3533).";
+            //Console.WriteLine("smsContent ==>> " + smsContent);
+
+            // Format the amount:
+            double requestedAmount = 40.0100;
+            var formattedAmount = string.Format("{0:0.00}", requestedAmount);
+            //Console.WriteLine("Formatted Decimal Amount ==>> "+ formattedAmount);
+
+            string strJoin = string.Format("CPF Withdrawal Request on {0} Cancelled", requestedAmount);
+            //Console.WriteLine("string.Format output ==>> " + strJoin);
+
+            string concatenatedThree = string.Join(" ", "CPF Withdrawal Request on", requestedAmount, "Cancelled");
+            //Console.WriteLine("concatenatedThree output ==>> " + concatenatedThree);
+
+            //Console.WriteLine("A55WithdrawalStatus.C.ToString()  ==>> " + A55WithdrawalStatus.C.ToString());
+
+            // Console.WriteLine("CodeRequestStatus.code11  ==>> " + CodeRequestStatus.code11.GetEnumDescription());
+            //  Console.WriteLine("CodeRequestStatus.code83  ==>> " + CodeRequestStatus.code83.GetEnumDescription());
+            //Console.WriteLine("CodeRequestStatus.code3  ==>> " + CodeRequestStatus.code3.GetEnumDescription());
+
+            var transactionStatus = StatusCode.GetTransactionStatus(3, 0);
+            var finalStatus = transactionStatus.GetEnumStringCode();
+
+            // Console.WriteLine("Status generated from the service GetTransactionStatus ==>> " + finalStatus + " -- " + transactionStatus.GetEnumDescription() + " CodeRequestStatus.code83 -- " + (int)CodeRequestStatus.code83);
+            // Console.WriteLine("transactionStatus ==>> " + finalStatus + " -- " + (int)transactionStatus);
+
+            var raStatus = StatusCode.GetRAWithdrawalStatus("C");
+            // Console.WriteLine("GetRAWithdrawalStatus ==>> " + raStatus);
+
+            var code83 = Convert.ToString((int)CodeRequestStatus.code83);
+            var code83String = CodeRequestStatus.code83.GetEnumStringCode();
+
+
+            //Console.WriteLine("transactionStatus ==>> " + code83 );
+            // Console.WriteLine("transactionStatus ==>> " + code83String);
+
+            decimal? REQAMOUNT = 30000;
+            var REQUESTED_AMOUNT = "30000";
+
+            var requestedAmountValue = string.Format("{0:0.00}", REQAMOUNT);// Math.Round(decimal.Parse(REQUESTED_AMOUNT), 2);
+                                                                            // Console.WriteLine("Decimal value requestedAmountValue ==>> " + requestedAmountValue);
+
+            decimal decimalValue1 = Decimal.Parse(REQUESTED_AMOUNT, System.Globalization.CultureInfo.InvariantCulture);
+            string textValue = decimalValue1.ToString("0.00");
+
+            //Console.WriteLine("Decimal value textValue ==>> " + textValue);
+
+            Console.WriteLine("AddCurrencyAmount Decimal value ==>> " + AddCurrencyAmount(REQAMOUNT ?? 0m));
+            CreateNotificationEvent notificationEvent = new CreateNotificationEvent
+            (
+                //BodyType = "HTML",
+                //CPFAccountNumber = "ictk_~Tq_Te8#F",
+                //Email = "test@gcc.gov.sg",
+                //FromMS = "Retirement",
+                ////ID = new Guid("79e165cf-b1d8-41cb-8326-721190f02fdb"),
+                //OperationID = ""
+                "SMS", "PA55IM0PLRSMS01", "FORM_TITLE", "Withdrawal Request", "test@test.com", "99009900", "HTML", "", "", "", ""
+            );
+
+            Console.WriteLine("Class object details " + JsonSerializer.Serialize(notificationEvent));
+
+            var sms_A55RA_RequestedAmount_PayNowLinebreak_Content = "Dear %%MASKED_NRIC%%, your request to withdraw $%%REQUESTED_AMOUNT%% from your CPF savings, submitted on %%SUBMITTED_DATE%%, has been processed. Please check 'My Activities' in 'my cpf Online Services' for more details." + Environment.NewLine + Environment.NewLine + "If unauthorised, please contact your bank to freeze your bank account immediately, and reset your Singpass (for assistance, call Singpass' 24/7 helpdesk at +65 6335 3533).";
+            Console.WriteLine("sms_A55RA_RequestedAmount_PayNowLinebreak_Content " + sms_A55RA_RequestedAmount_PayNowLinebreak_Content);
 
             Console.ReadLine();
+        }
+
+
+        public enum A55WithdrawalStatus
+        {
+
+            None,
+
+            SC,
+
+            PQP,
+
+            PV,
+
+            RJ,
+
+            C
         }
 
         private static string removeString(string str, char last_removed)
@@ -381,6 +574,11 @@ namespace Code.Practice.Samples
                 CombinationUtil(N, sum, currSum + i, i, combinationList);
                 combinationList.Remove(combinationList.Count - 1);
             }
+        }
+
+        public static string AddCurrencyAmount(decimal amt)
+        {
+            return amt.ToString("C", CultureInfo.CreateSpecificCulture("en-US")).Remove(0, 1);
         }
 
         /// <summary>

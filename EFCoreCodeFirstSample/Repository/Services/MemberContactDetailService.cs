@@ -114,25 +114,14 @@ namespace EFCoreCodeFirstSample.Repository.Services
         public ResponseModel ValidateAccountNumber(string accountNumber)
         {
             ResponseModel model = new ResponseModel();
-            bool isValidInput = false;
+
             try
             {
                 // Check the Length must be 9 char
                 var inputLength = accountNumber.Length;
                 if (inputLength == 9)
                 {
-                    isValidInput = IsValidAccountNumber(accountNumber);
-
-                    if (isValidInput)
-                    {
-                        model.IsSuccess = true;
-                        model.Messsage = "This " + accountNumber + " is a valid account number.";
-                    }
-                    else
-                    {
-                        model.IsSuccess = false;
-                        model.Messsage = "This " + accountNumber + " is a not valid account number.";
-                    }
+                    model = IsValidAccountNumber(accountNumber);
                 }
                 else
                 {
@@ -166,8 +155,8 @@ namespace EFCoreCodeFirstSample.Repository.Services
         /// <summary>
         /// Get First Character
         /// </summary>
-        /// <param name="accountNumber"></param>
-        /// <returns></returns>
+        /// <param name="accountNumber">Account number to be checked for first letter</param>
+        /// <returns>Account number first character should be letter</returns>
         private string GetFirstCharacter(string accountNumber)
         {
             string result = string.Empty;
@@ -180,8 +169,8 @@ namespace EFCoreCodeFirstSample.Repository.Services
         /// <summary>
         /// Get Last Character
         /// </summary>
-        /// <param name="accountNumber"></param>
-        /// <returns></returns>
+        /// <param name="accountNumber">Account number to be checked for last letter</param>
+        /// <returns>Account number last character should be letter</returns>
         private string GetLastCharacter(string accountNumber)
         {
             string result = string.Empty;
@@ -194,8 +183,8 @@ namespace EFCoreCodeFirstSample.Repository.Services
         /// <summary>
         /// Is Digits Only
         /// </summary>
-        /// <param name="accountNumber"></param>
-        /// <returns></returns>
+        /// <param name="accountNumber">Account number to be checked for number only</param>
+        /// <returns>Return true if condition satisfy</returns>
         private bool IsDigitsOnly(string accountNumber)
         {
             bool isOnlyNumber = false;
@@ -205,14 +194,6 @@ namespace EFCoreCodeFirstSample.Repository.Services
                 var inputData = string.Empty;
                 inputData = accountNumber.Remove(0, 1);
                 inputData = inputData.Remove(inputData.Length - 1, 1);
-                //foreach (char c in inputData)
-                //{
-                //    if (c < '0' || c > '9')
-                //        isOnlyNumber = false;
-                //}
-                //isOnlyNumber = true;
-
-                // Other way 
                 isOnlyNumber = Regex.IsMatch(inputData, @"^[0-9]+$");
             }
             return isOnlyNumber;
@@ -221,8 +202,8 @@ namespace EFCoreCodeFirstSample.Repository.Services
         /// <summary>
         /// Is Only Alpha Numeric
         /// </summary>
-        /// <param name="accountNumber"></param>
-        /// <returns></returns>
+        /// <param name="accountNumber">Account Number to be validated as only alpha numeric</param>
+        /// <returns>Return true if condition satisfy</returns>
         private bool IsOnlyAlphaNumeric(string accountNumber)
         {
             bool isOnlyAlphaNumeric = false;
@@ -237,8 +218,8 @@ namespace EFCoreCodeFirstSample.Repository.Services
         /// <summary>
         /// Is Only Letter
         /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
+        /// <param name="input">input to be checked for letter only</param>
+        /// <returns>Return true if condition satisfy</returns>
         private bool IsOnlyLetter(string input)
         {
             bool isValid = false;
@@ -253,15 +234,17 @@ namespace EFCoreCodeFirstSample.Repository.Services
         /// <summary>
         /// Is Valid Account Number
         /// </summary>
-        /// <param name="accountNumber"></param>
-        /// <returns></returns>
-        private bool IsValidAccountNumber(string accountNumber)
+        /// <param name="accountNumber">Account Number which need to validated should be in string format</param>
+        /// <returns>Returns valid account number</returns>
+        private ResponseModel IsValidAccountNumber(string accountNumber)
         {
+            ResponseModel responseModel = new ResponseModel();
             bool isValidInput = false;
+            string strMessage = string.Empty;
 
-            isValidInput = IsOnlyAlphaNumeric(accountNumber);
+            var isAlphaNumeric = IsOnlyAlphaNumeric(accountNumber);
 
-            if (isValidInput)
+            if (isAlphaNumeric)
             {
                 var firstLetter = GetFirstCharacter(accountNumber);
                 var lastLetter = GetLastCharacter(accountNumber);
@@ -271,32 +254,56 @@ namespace EFCoreCodeFirstSample.Repository.Services
 
                 if (firstLetter == null || lastLetter == null)
                 {
-                    isValidInput = false;
+                    strMessage = "This '" + accountNumber + "' is a not valid account number.";
                 }
+                var firstLetterUpper = firstLetter?.ToUpperInvariant();
+                var isNumber = IsDigitsOnly(accountNumber);
 
                 if (isFirstDigitLetter && isLastDigitLetter)
                 {
-                    if (firstLetter == "S" || firstLetter == "T")
+                    if (firstLetterUpper == "S" || firstLetterUpper == "T")
                     {
-                        var isNumber = IsDigitsOnly(accountNumber);
-
                         if (isNumber)
                         {
                             isValidInput = true;
+                            strMessage = "This '" + accountNumber + "' is a valid account number.";
+                        }
+                        else
+                        {
+                            strMessage = "This '" + accountNumber + "' is a not valid account number.";
                         }
                     }
                     else
                     {
-                        isValidInput = false;
+                        strMessage = "Account number first character should be either T or S, but it start with " + firstLetterUpper + ", please enter correct account number.";
                     }
                 }
-                else if (isFirstDigitLetter || isLastDigitLetter)
+                else if (!isFirstDigitLetter && isLastDigitLetter)
                 {
-                    isValidInput = false;
+                    strMessage = "This '" + accountNumber + "' is a not valid account number, due to first digit - '" + firstLetter + "' should be letter.";
+                }
+                else if (isFirstDigitLetter && !isLastDigitLetter)
+                {
+                    strMessage = "This '" + accountNumber + "' is a not valid account number, due to last digit - '" + lastLetter + "' should be letter.";
+                }
+                else if (!isFirstDigitLetter)
+                {
+                    strMessage = "This '" + accountNumber + "' is a not valid account number, due to first digit - '"+ firstLetter + "' should be letter.";
+                }
+                else if (!isLastDigitLetter)
+                {
+                    strMessage = "This '" + accountNumber + "' is a not valid account number, due to last digit - '"+ lastLetter + "' should be letter.";
                 }
             }
+            else
+            {
+                strMessage = "This '" + accountNumber + "' is a not valid account number.";
+            }
 
-            return isValidInput;
+            responseModel.IsSuccess = isValidInput;
+            responseModel.Messsage = strMessage;
+
+            return responseModel;
         }
     }
 }

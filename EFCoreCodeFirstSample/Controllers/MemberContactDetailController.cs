@@ -1,17 +1,23 @@
 ﻿using EFCoreCodeFirstSample.Entity;
 using EFCoreCodeFirstSample.Models.ContactDetails;
 using EFCoreCodeFirstSample.Repository.Interface;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EFCoreCodeFirstSample.Controllers
 {
+    /// <summary>
+    /// Member Contact Detail Controller
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class MemberContactDetailController : ControllerBase
     {
         private readonly IMemberContactDetailService _memberContactDetailService;
 
+        /// <summary>
+        /// Parameterized Constructor
+        /// </summary>
+        /// <param name="contactDetailService">IMemberContactDetailService contactDetailService</param>
         public MemberContactDetailController(IMemberContactDetailService contactDetailService)
         {
             _memberContactDetailService = contactDetailService;
@@ -144,6 +150,25 @@ namespace EFCoreCodeFirstSample.Controllers
             try
             {
                 var model = _memberContactDetailService.ValidateAccountNumber(accountNumber);
+                return Ok(model);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        /// <summary>
+        /// Validate Account Number
+        /// </summary>
+        /// <param name="accountNumber">string accountNumber</param>
+        /// <returns></returns>
+        [HttpPost("ValidateEnquireListInput")]
+        public IActionResult ValidateEnquireListInputAsync(EnquireListOfContactInfoRequestDto requestDto)
+        {
+            try
+            {
+                var model = _memberContactDetailService.ValidateEnquireListInput(requestDto);
                 return Ok(model);
             }
             catch (Exception)

@@ -2,19 +2,43 @@
 using EFCoreCodeFirstSample.Models;
 using EFCoreCodeFirstSample.Models.ContactDetails;
 using EFCoreCodeFirstSample.Repository.Interface;
+using EFCoreCodeFirstSample.Repository.Services.Common;
 using System.Text.RegularExpressions;
 
 namespace EFCoreCodeFirstSample.Repository.Services
 {
+    /// <summary>
+    /// Business service class for member contact detail
+    /// </summary>
     public class MemberContactDetailService : IMemberContactDetailService
     {
-        private readonly EFCoreCodeContext _dbContext;
+        #region Variables
 
+        private readonly EFCoreCodeContext _dbContext;
+        public const string ValidAlphaNumericRegex = @"^[a-zA-Z0-9]+$";
+        public const string ValidLettersRegex = @"^[a-zA-Z]+$";
+        public const string ValidNumbersRegex = @"^[0-9]+$";
+        public const string ValidOverseaNumberRegex = @"^[0-9 -]{0,20}$";
+        public const string ValidEmailRegex = @"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$";
+
+        #endregion
+
+        /// <summary>
+        /// Constructor with parameter
+        /// </summary>
+        /// <param name="dbContext">EFCoreCodeContext dbContext</param>
         public MemberContactDetailService(EFCoreCodeContext dbContext)
         {
             _dbContext = dbContext;
         }
 
+        #region Public Methods
+
+        /// <summary>
+        /// Delete Member Contact Detail
+        /// </summary>
+        /// <param name="accountNumber">string accountNumber</param>
+        /// <returns></returns>
         public ResponseModel DeleteMemberContactDetail(string accountNumber)
         {
             ResponseModel model = new ResponseModel();
@@ -42,21 +66,30 @@ namespace EFCoreCodeFirstSample.Repository.Services
             return model;
         }
 
-        //public MemberContactDetailsEntity GetMemberContactDetailsById(string accountNumber)
-        //{
-        //    MemberContactDetailsEntity memberContact ;
-        //    try
-        //    {
-        //       // memberContact = _dbContext.MemberContactDetails.Where(x => x.AccountNumber == accountNumber).FirstOrDefault();
+        /// <summary>
+        /// Get Member Contact Details By Id
+        /// </summary>
+        /// <param name="accountNumber">string accountNumber</param>
+        /// <returns></returns>
+        public MemberContactDetailsEntity GetMemberContactDetailsById(string accountNumber)
+        {
+            MemberContactDetailsEntity memberContact;
+            try
+            {
+                // memberContact = _dbContext.MemberContactDetails.Where(x => x.AccountNumber == accountNumber).FirstOrDefault();
 
-        //    }
-        //    catch (Exception)
-        //    {
-        //        throw;
-        //    }
-        //    return memberContact;
-        //}
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return memberContact = null;
+        }
 
+        /// <summary>
+        /// Get Member Contact List
+        /// </summary>
+        /// <returns></returns>
         public List<MemberContactDetails> GetMemberContactList()
         {
             List<MemberContactDetails> memberContactList = new List<MemberContactDetails>();
@@ -71,6 +104,11 @@ namespace EFCoreCodeFirstSample.Repository.Services
             return memberContactList;
         }
 
+        /// <summary>
+        /// Save Member Contact Detail
+        /// </summary>
+        /// <param name="memberContact">MemberContactDetails memberContact</param>
+        /// <returns></returns>
         public ResponseModel SaveMemberContactDetail(MemberContactDetails memberContact)
         {
             ResponseModel model = new ResponseModel();
@@ -137,20 +175,98 @@ namespace EFCoreCodeFirstSample.Repository.Services
             return model;
         }
 
+        /// <summary>
+        /// Validate Email Address
+        /// </summary>
+        /// <param name="emailAddress">string emailAddress</param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
         public ResponseModel ValidateEmailAddress(string emailAddress)
         {
-            throw new NotImplementedException();
+            ResponseModel response = new ResponseModel();
+
+            var isEmailAddressValid = EnqureContactInfoInputValidation.IsValidateEmailAddress(emailAddress);
+
+            response.Messsage = isEmailAddressValid == false ? "EmailAddress is NOT valid." : "EmailAddress is valid.";
+            response.IsSuccess = isEmailAddressValid;
+
+            return response;
         }
 
+        /// <summary>
+        /// Validation Mobile Number
+        /// </summary>
+        /// <param name="mobileNumber">string mobileNumber</param>
+        /// <param name="isSgNumber">bool isSgNumber/param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
         public ResponseModel ValidationMobileNumber(string mobileNumber, bool isSgNumber)
         {
-            throw new NotImplementedException();
+            ResponseModel response = new ResponseModel();
+
+            var isMobileNumberValid = EnqureContactInfoInputValidation.IsValidateMobileNumber(mobileNumber);
+
+            response.Messsage = isMobileNumberValid == false ? "Mobile number is NOT valid." : "Mobile number is valid.";
+            response.IsSuccess = isMobileNumberValid;
+            
+            return response;
         }
 
+        /// <summary>
+        /// Get Member Contact Details By Id
+        /// </summary>
+        /// <param name="accountNumber">string accountNumber</param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
         MemberContactDetails IMemberContactDetailService.GetMemberContactDetailsById(string accountNumber)
         {
             throw new NotImplementedException();
         }
+
+        /// <summary>
+        /// Validate Enquire List Input
+        /// </summary>
+        /// <param name="requestDto">EnquireListOfContactInfoRequestDto requestDto</param>
+        /// <returns></returns>
+        public ResponseModel ValidateEnquireListInput(EnquireListOfContactInfoRequestDto requestDto)
+        {
+            ResponseModel responseModel = new ResponseModel();
+            string returnMessage = "Inputs are valid.";
+
+            if (string.IsNullOrEmpty(requestDto.CpfAccountNumber) && string.IsNullOrEmpty(requestDto.MobileNumber) && string.IsNullOrEmpty(requestDto.EmailAddress))
+            {
+                returnMessage = "Please provide value for any one of the field(s).";
+            }
+            else if (!string.IsNullOrEmpty(requestDto.CpfAccountNumber) && !string.IsNullOrEmpty(requestDto.MobileNumber) && !string.IsNullOrEmpty(requestDto.EmailAddress))
+            {
+                returnMessage = EnqureContactInfoInputValidation.ReturnMessageWhenAllInputsAreInvalid(requestDto);
+            }
+            else if (!string.IsNullOrEmpty(requestDto.CpfAccountNumber) && !string.IsNullOrEmpty(requestDto.MobileNumber) && string.IsNullOrEmpty(requestDto.EmailAddress))
+            {
+                returnMessage = EnqureContactInfoInputValidation.ReturnMessageWhenCpfAccountNumberMobileInvalid(requestDto);
+            }
+            else if (!string.IsNullOrEmpty(requestDto.CpfAccountNumber) && string.IsNullOrEmpty(requestDto.MobileNumber) && !string.IsNullOrEmpty(requestDto.EmailAddress))
+            {
+                returnMessage = EnqureContactInfoInputValidation.ReturnMessageWhenCpfAccountNumberEmailInvalid(requestDto);
+            }
+            else if (string.IsNullOrEmpty(requestDto.CpfAccountNumber) && !string.IsNullOrEmpty(requestDto.MobileNumber) && !string.IsNullOrEmpty(requestDto.EmailAddress))
+            {
+                returnMessage = EnqureContactInfoInputValidation.ReturnMessageWhenEmailMobileInvalid(requestDto);
+            }
+            else
+            {
+                returnMessage = EnqureContactInfoInputValidation.ReturnMessageWhenAllInputsAreInvalid(requestDto);
+            }
+
+            responseModel.IsSuccess = returnMessage == "Inputs are valid." ? true : false;
+            responseModel.Messsage = returnMessage;
+
+            return responseModel;
+        }
+
+        #endregion
+
+        #region Private Methods
 
         /// <summary>
         /// Get First Character
@@ -288,11 +404,11 @@ namespace EFCoreCodeFirstSample.Repository.Services
                 }
                 else if (!isFirstDigitLetter)
                 {
-                    strMessage = "This '" + accountNumber + "' is a not valid account number, due to first digit - '"+ firstLetter + "' should be letter.";
+                    strMessage = "This '" + accountNumber + "' is a not valid account number, due to first digit - '" + firstLetter + "' should be letter.";
                 }
                 else if (!isLastDigitLetter)
                 {
-                    strMessage = "This '" + accountNumber + "' is a not valid account number, due to last digit - '"+ lastLetter + "' should be letter.";
+                    strMessage = "This '" + accountNumber + "' is a not valid account number, due to last digit - '" + lastLetter + "' should be letter.";
                 }
             }
             else
@@ -305,5 +421,7 @@ namespace EFCoreCodeFirstSample.Repository.Services
 
             return responseModel;
         }
+
+        #endregion
     }
 }

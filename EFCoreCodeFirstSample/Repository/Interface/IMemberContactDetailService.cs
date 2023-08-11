@@ -1,5 +1,4 @@
-﻿using EFCoreCodeFirstSample.Entity;
-using EFCoreCodeFirstSample.Models;
+﻿using EFCoreCodeFirstSample.Models;
 using EFCoreCodeFirstSample.Models.ContactDetails;
 
 namespace EFCoreCodeFirstSample.Repository.Interface
@@ -55,5 +54,12 @@ namespace EFCoreCodeFirstSample.Repository.Interface
         /// <param name="accountNumber">string accountNumber</param>
         /// <returns></returns>
         ResponseModel ValidateAccountNumber(string accountNumber);
+
+        /// <summary>
+        /// Validate Input Data
+        /// </summary>
+        /// <param name="requestDto">nquireListOfContactInfoRequestDto requestDto</param>
+        /// <returns></returns>
+        ResponseModel ValidateEnquireListInput(EnquireListOfContactInfoRequestDto requestDto);
     }
 }

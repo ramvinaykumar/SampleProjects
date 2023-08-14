@@ -1,4 +1,5 @@
-﻿using EFCoreCodeFirstSample.Models.ContactDetails;
+﻿using EFCoreCodeFirstSample.Constants;
+using EFCoreCodeFirstSample.Models.ContactDetails;
 using System.Text.RegularExpressions;
 
 namespace EFCoreCodeFirstSample.Repository.Services.Common
@@ -44,16 +45,16 @@ namespace EFCoreCodeFirstSample.Repository.Services.Common
 
                     if (!isFirstDigitLetter)
                     {
-                        return returnMessage = "This '" + cpfAccountNumber + "' is a not valid CpfAccountNumber, as the first char - '" + firstLetter + "' should be a letter.";
+                        return returnMessage = string.Format(ValidationConstants.Invalid_AccountNumber_FirstChar, cpfAccountNumber, firstLetter);
                     }
                     if (!isLastDigitLetter)
                     {
-                        return returnMessage = "This '" + cpfAccountNumber + "' is a not valid CpfAccountNumber, as the first char - '" + lastLetter + "' should be a letter.";
+                        return returnMessage = string.Format(ValidationConstants.Invalid_AccountNumber_LastChar, cpfAccountNumber, lastLetter);
                     }
 
                     // Check whether first letter start with S or T
                     var firstLetterUpper = firstLetter?.ToUpperInvariant();
-                    if (firstLetterUpper == "S" || firstLetterUpper == "T")
+                    if (firstLetterUpper == "S" || firstLetterUpper == "T" || firstLetterUpper == "M")
                     {
                         // Remaining 6 digit should be only numbers
                         var isRemainingDigitNumber = IsNumbersOnly(cpfAccountNumber);
@@ -63,19 +64,19 @@ namespace EFCoreCodeFirstSample.Repository.Services.Common
                         }
                         else
                         {
-                            return returnMessage = "3rd to 8th char should be integer.";
+                            return returnMessage = ValidationConstants.Input_Should_Be_Numbers_Olny;
                         }
                     }
                     else
                     {
-                        return returnMessage = "CpfAccountNumber first char should be either T or S, but it start with " + firstLetterUpper + ", please enter correct CpfAccountNumber.";
+                        return returnMessage = string.Format(ValidationConstants.Invalid_AccountNumber_CharShould_StartWith, cpfAccountNumber);
                     }
                 }
                 else
-                    return returnMessage = "This '" + cpfAccountNumber + "' is a not valid CpfAccountNumber.";
+                    return returnMessage = string.Format(ValidationConstants.Invalid_AccountNumber, cpfAccountNumber);
             }
             else
-                return returnMessage = "This account number " + cpfAccountNumber + " has " + length + " in length. Length must be 9 char.";
+                return returnMessage = string.Format(ValidationConstants.AccountNumber_Valid_Length, cpfAccountNumber, length);
         }
 
         /// <summary>
@@ -103,7 +104,7 @@ namespace EFCoreCodeFirstSample.Repository.Services.Common
                 var isEmailAddrss = IsValidateEmailAddress(requestDto.EmailAddress);
                 if (!isEmailAddrss)
                 {
-                    strMessage = strMessage + " " + "Email address is NOT valid.";
+                    strMessage = strMessage + " " + ValidationConstants.Invalid_Email_Address;
                     isInputDataInvalid = true;
                 }
             }
@@ -113,14 +114,14 @@ namespace EFCoreCodeFirstSample.Repository.Services.Common
                 var isValidMobileNumber = IsValidateMobileNumber(requestDto.MobileNumber);
                 if (!isValidMobileNumber)
                 {
-                    strMessage = strMessage + " " + "Mobile number is NOT valid.";
+                    strMessage = strMessage + " " + ValidationConstants.Invalid_Mobile_Number;
                     isInputDataInvalid = true;
                 }
             }
             if (isInputDataInvalid)
-                return strMessage;
+                return strMessage.Trim();
 
-            return "Inputs are valid.";
+            return ValidationConstants.Valid_Inputs;
         }
 
         /// <summary>
@@ -148,15 +149,15 @@ namespace EFCoreCodeFirstSample.Repository.Services.Common
                 var isEmailAddrss = IsValidateEmailAddress(requestDto.EmailAddress);
                 if (!isEmailAddrss)
                 {
-                    strMessage = strMessage + " " + "Email address is NOT valid.";
+                    strMessage = strMessage + " " + ValidationConstants.Invalid_Email_Address;
                     isInputDataInvalid = true;
                 }
             }
 
             if (isInputDataInvalid)
-                return strMessage;
+                return strMessage.Trim();
 
-            return "Inputs are valid.";
+            return ValidationConstants.Valid_Inputs;
         }
 
         /// <summary>
@@ -184,14 +185,14 @@ namespace EFCoreCodeFirstSample.Repository.Services.Common
                 var isValidMobileNumber = IsValidateMobileNumber(requestDto.MobileNumber);
                 if (!isValidMobileNumber)
                 {
-                    strMessage = strMessage + " " + "Mobile number is NOT valid.";
+                    strMessage = strMessage + " " + ValidationConstants.Invalid_Mobile_Number;
                     isInputDataInvalid = true;
                 }
             }
             if (isInputDataInvalid)
-                return strMessage;
+                return strMessage.Trim();
 
-            return "Inputs are valid.";
+            return ValidationConstants.Valid_Inputs;
         }
 
         /// <summary>
@@ -209,7 +210,7 @@ namespace EFCoreCodeFirstSample.Repository.Services.Common
                 var isEmailAddrss = IsValidateEmailAddress(requestDto.EmailAddress);
                 if (!isEmailAddrss)
                 {
-                    strMessage = strMessage + " " + "Email address is NOT valid.";
+                    strMessage = strMessage + " " + ValidationConstants.Invalid_Email_Address;
                     isInputDataInvalid = true;
                 }
             }
@@ -219,14 +220,14 @@ namespace EFCoreCodeFirstSample.Repository.Services.Common
                 var isValidMobileNumber = IsValidateMobileNumber(requestDto.MobileNumber);
                 if (!isValidMobileNumber)
                 {
-                    strMessage = strMessage + " " + "Mobile number is NOT valid.";
+                    strMessage = strMessage + " " + ValidationConstants.Invalid_Mobile_Number;
                     isInputDataInvalid = true;
                 }
             }
             if (isInputDataInvalid)
-                return strMessage;
+                return strMessage.Trim();
 
-            return "Inputs are valid.";
+            return ValidationConstants.Valid_Inputs;
         }
 
         /// <summary>

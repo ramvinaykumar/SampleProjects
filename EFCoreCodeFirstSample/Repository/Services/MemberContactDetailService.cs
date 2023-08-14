@@ -1,4 +1,5 @@
-﻿using EFCoreCodeFirstSample.Entity;
+﻿using EFCoreCodeFirstSample.Constants;
+using EFCoreCodeFirstSample.Entity;
 using EFCoreCodeFirstSample.Models;
 using EFCoreCodeFirstSample.Models.ContactDetails;
 using EFCoreCodeFirstSample.Repository.Interface;
@@ -231,11 +232,11 @@ namespace EFCoreCodeFirstSample.Repository.Services
         public ResponseModel ValidateEnquireListInput(EnquireListOfContactInfoRequestDto requestDto)
         {
             ResponseModel responseModel = new ResponseModel();
-            string returnMessage = "Inputs are valid.";
+            string returnMessage = ValidationConstants.Valid_Inputs;
 
             if (string.IsNullOrEmpty(requestDto.CpfAccountNumber) && string.IsNullOrEmpty(requestDto.MobileNumber) && string.IsNullOrEmpty(requestDto.EmailAddress))
             {
-                returnMessage = "Please provide value for any one of the field(s).";
+                returnMessage = ValidationConstants.AccountNumber_EmailAddress_MobileNumber_Blank;
             }
             else if (!string.IsNullOrEmpty(requestDto.CpfAccountNumber) && !string.IsNullOrEmpty(requestDto.MobileNumber) && !string.IsNullOrEmpty(requestDto.EmailAddress))
             {
@@ -258,7 +259,7 @@ namespace EFCoreCodeFirstSample.Repository.Services
                 returnMessage = EnqureContactInfoInputValidation.ReturnMessageWhenAllInputsAreInvalid(requestDto);
             }
 
-            responseModel.IsSuccess = returnMessage == "Inputs are valid." ? true : false;
+            responseModel.IsSuccess = returnMessage == ValidationConstants.Valid_Inputs ? true : false;
             responseModel.Messsage = returnMessage;
 
             return responseModel;

@@ -5,11 +5,14 @@ using Code.Practice.Samples.Common;
 using Code.Practice.Samples.EnumProgram;
 using Code.Practice.Samples.NotificationEvent;
 using Code.Practice.Samples.RnD;
+using EnumsNET;
 using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.Intrinsics.Arm;
+using System.Text;
 using System.Text.Json;
 
 namespace Code.Practice.Samples
@@ -152,28 +155,29 @@ namespace Code.Practice.Samples
             DateTime aDate = DateTime.Now;
 
             // Format Datetime in different formats and display them
-            Console.WriteLine(aDate.ToString("MM/dd/yyyy"));
-            Console.WriteLine(aDate.ToString("dd MMM yyyy hh:mm tt"));
-            Console.WriteLine(aDate.ToString("dddd, dd MMMM yyyy"));
-            Console.WriteLine(aDate.ToString("dddd, dd MMMM yyyy"));
-            Console.WriteLine(aDate.ToString("dddd, dd MMMM yyyy"));
-            Console.WriteLine(aDate.ToString("dddd, dd MMMM yyyy"));
-            Console.WriteLine(aDate.ToString("dddd, dd MMMM yyyy HH:mm:ss"));
-            Console.WriteLine(aDate.ToString("MM/dd/yyyy HH:mm"));
-            Console.WriteLine(aDate.ToString("MM/dd/yyyy hh:mm tt"));
-            Console.WriteLine(aDate.ToString("MM/dd/yyyy H:mm"));
-            Console.WriteLine(aDate.ToString("MM/dd/yyyy h:mm tt"));
-            Console.WriteLine(aDate.ToString("MM/dd/yyyy HH:mm:ss"));
-            Console.WriteLine(aDate.ToString("MMMM dd"));
-            Console.WriteLine(aDate.ToString("yyyy’-‘MM’-‘dd’T’HH’:’mm’:’ss.fffffffK"));
-            Console.WriteLine(aDate.ToString("ddd, dd MMM yyy HH’:’mm’:’ss ‘GMT’"));
-            Console.WriteLine(aDate.ToString("yyyy’-‘MM’-‘dd’T’HH’:’mm’:’ss"));
-            Console.WriteLine(aDate.ToString("HH:mm"));
-            Console.WriteLine(aDate.ToString("hh:mm tt"));
-            Console.WriteLine(aDate.ToString("H:mm"));
-            Console.WriteLine(aDate.ToString("h:mm tt"));
-            Console.WriteLine(aDate.ToString("HH:mm:ss"));
-            Console.WriteLine(aDate.ToString("yyyy MMMM"));
+            //Console.WriteLine(aDate.ToString("MM/dd/yyyy"));
+            //Console.WriteLine(aDate.ToString("dd MMM yyyy hh:mm tt"));
+            //Console.WriteLine(aDate.ToString("dddd, dd MMMM yyyy"));
+            //Console.WriteLine(aDate.ToString("dddd, dd MMMM yyyy"));
+            //Console.WriteLine(aDate.ToString("dddd, dd MMMM yyyy"));
+            //Console.WriteLine(aDate.ToString("dddd, dd MMMM yyyy"));
+            //Console.WriteLine(aDate.ToString("dddd, dd MMMM yyyy HH:mm:ss"));
+            //Console.WriteLine(aDate.ToString("MM/dd/yyyy HH:mm"));
+            //Console.WriteLine(aDate.ToString("MM/dd/yyyy hh:mm tt"));
+            //Console.WriteLine(aDate.ToString("MM/dd/yyyy H:mm"));
+            //Console.WriteLine(aDate.ToString("MM/dd/yyyy h:mm tt"));
+            //Console.WriteLine(aDate.ToString("MM/dd/yyyy HH:mm:ss"));
+            //Console.WriteLine(aDate.ToString("MMMM dd"));
+            //Console.WriteLine(aDate.ToString("yyyy’-‘MM’-‘dd’T’HH’:’mm’:’ss.fffffffK"));
+            //Console.WriteLine(aDate.ToString("ddd, dd MMM yyy HH’:’mm’:’ss ‘GMT’"));
+            //Console.WriteLine(aDate.ToString("yyyy’-‘MM’-‘dd’T’HH’:’mm’:’ss"));
+            //Console.WriteLine(aDate.ToString("HH:mm"));
+            //Console.WriteLine(aDate.ToString("hh:mm tt"));
+            //Console.WriteLine(aDate.ToString("H:mm"));
+            //Console.WriteLine(aDate.ToString("h:mm tt"));
+            //Console.WriteLine(aDate.ToString("HH:mm:ss"));
+            //Console.WriteLine(aDate.ToString("yyyy MMMM"));
+            Console.WriteLine(aDate.ToString("dd MMMM yyyy hh:mm tt"));
 
             // Decimal Issue
             var stringValue = string.Empty;
@@ -203,57 +207,57 @@ namespace Code.Practice.Samples
             //}
 
             // 24 Hours
-            DateTimeOffset? dob = new DateTimeOffset();
+            //DateTimeOffset? dob = new DateTimeOffset();
 
-            IFormatProvider provider = CultureInfo.InvariantCulture.DateTimeFormat;
-            var dateOfBirth = "19680421";
+            //IFormatProvider provider = CultureInfo.InvariantCulture.DateTimeFormat;
+            //var dateOfBirth = "19680421";
 
-            try
-            {
-                DateTimeOffset currentDate = DateTime.Now;
-
-
-                dob = DateTimeOffset.ParseExact(dateOfBirth, @"yyyyddM", provider, DateTimeStyles.AllowWhiteSpaces);
+            //try
+            //{
+            //    DateTimeOffset currentDate = DateTime.Now;
 
 
-                DateTime validDate = new DateTime(currentDate.Year - 55, currentDate.Month, currentDate.Day);
-                TimeSpan validAge = currentDate.Subtract(validDate);
-                TimeSpan actualAge = currentDate.Subtract(dob.Value);
+            //    dob = DateTimeOffset.ParseExact(dateOfBirth, @"yyyyddM", provider, DateTimeStyles.AllowWhiteSpaces);
 
-                decimal diffInDays = Convert.ToDecimal(actualAge.Subtract(validAge).Days);
 
-                //submission date >= Member's 55 birthdate
-                //Console.WriteLine("submission date >= Member's 55 birthdate " + diffInDays);
-            }
-            catch (Exception e)
-            {
-                dob = null;
-            }
+            //    DateTime validDate = new DateTime(currentDate.Year - 55, currentDate.Month, currentDate.Day);
+            //    TimeSpan validAge = currentDate.Subtract(validDate);
+            //    TimeSpan actualAge = currentDate.Subtract(dob.Value);
 
-            //Console.WriteLine("DateTimeOffset dateOfBirth " + dateOfBirth);
+            //    decimal diffInDays = Convert.ToDecimal(actualAge.Subtract(validAge).Days);
 
-            var bankNumber = "931-42172-1";
-            var kjlj = "";
-            if (bankNumber.Contains('-'))
-                kjlj = bankNumber.Replace("-", "");
+            //    //submission date >= Member's 55 birthdate
+            //    //Console.WriteLine("submission date >= Member's 55 birthdate " + diffInDays);
+            //}
+            //catch (Exception e)
+            //{
+            //    dob = null;
+            //}
 
-            bankNumber = kjlj.Trim();
+            ////Console.WriteLine("DateTimeOffset dateOfBirth " + dateOfBirth);
 
-            var result = bankNumber.Substring(bankNumber.Length - 3);
-            //Console.WriteLine("Last 3 Digit of bank number ==>> " + result);
+            //var bankNumber = "931-42172-1";
+            //var kjlj = "";
+            //if (bankNumber.Contains('-'))
+            //    kjlj = bankNumber.Replace("-", "");
 
-            var smsContent = "Dear %%MASKED_NRIC%%, your CPF withdrawal application submitted on %%SUBMITTED_DATE%% has been processed and $%%PROCESSED_AMOUNT%% has been deducted from your CPF account." + Environment.NewLine + Environment.NewLine + "Monies will be credited to your %%BANK_NAME%% bank account (ending %%BANKACCOUNT_NUMBER%%) within 2 working days. Please check 'My Activities' in 'my cpf Online Services' for more details. " + Environment.NewLine + Environment.NewLine + "If unauthorised, please contact your bank to freeze your bank account immediately, and reset your Singpass (for assistance, call Singpass' 24/7 helpdesk at +65 6335 3533).";
-            //Console.WriteLine("smsContent ==>> " + smsContent);
+            //bankNumber = kjlj.Trim();
 
-            // Format the amount:
-            double requestedAmount = 40.0100;
-            var formattedAmount = string.Format("{0:0.00}", requestedAmount);
-            //Console.WriteLine("Formatted Decimal Amount ==>> "+ formattedAmount);
+            //var result = bankNumber.Substring(bankNumber.Length - 3);
+            ////Console.WriteLine("Last 3 Digit of bank number ==>> " + result);
 
-            string strJoin = string.Format("CPF Withdrawal Request on {0} Cancelled", requestedAmount);
-            //Console.WriteLine("string.Format output ==>> " + strJoin);
+            //var smsContent = "Dear %%MASKED_NRIC%%, your CPF withdrawal application submitted on %%SUBMITTED_DATE%% has been processed and $%%PROCESSED_AMOUNT%% has been deducted from your CPF account." + Environment.NewLine + Environment.NewLine + "Monies will be credited to your %%BANK_NAME%% bank account (ending %%BANKACCOUNT_NUMBER%%) within 2 working days. Please check 'My Activities' in 'my cpf Online Services' for more details. " + Environment.NewLine + Environment.NewLine + "If unauthorised, please contact your bank to freeze your bank account immediately, and reset your Singpass (for assistance, call Singpass' 24/7 helpdesk at +65 6335 3533).";
+            ////Console.WriteLine("smsContent ==>> " + smsContent);
 
-            string concatenatedThree = string.Join(" ", "CPF Withdrawal Request on", requestedAmount, "Cancelled");
+            //// Format the amount:
+            //double requestedAmount = 40.0100;
+            //var formattedAmount = string.Format("{0:0.00}", requestedAmount);
+            ////Console.WriteLine("Formatted Decimal Amount ==>> "+ formattedAmount);
+
+            //string strJoin = string.Format("CPF Withdrawal Request on {0} Cancelled", requestedAmount);
+            ////Console.WriteLine("string.Format output ==>> " + strJoin);
+
+            //string concatenatedThree = string.Join(" ", "CPF Withdrawal Request on", requestedAmount, "Cancelled");
             //Console.WriteLine("concatenatedThree output ==>> " + concatenatedThree);
 
             //Console.WriteLine("A55WithdrawalStatus.C.ToString()  ==>> " + A55WithdrawalStatus.C.ToString());
@@ -262,51 +266,102 @@ namespace Code.Practice.Samples
             //  Console.WriteLine("CodeRequestStatus.code83  ==>> " + CodeRequestStatus.code83.GetEnumDescription());
             //Console.WriteLine("CodeRequestStatus.code3  ==>> " + CodeRequestStatus.code3.GetEnumDescription());
 
-            var transactionStatus = StatusCode.GetTransactionStatus(3, 0);
-            var finalStatus = transactionStatus.GetEnumStringCode();
+            //var transactionStatus = StatusCode.GetTransactionStatus(3, 0);
+            //var finalStatus = transactionStatus.GetEnumStringCode();
 
             // Console.WriteLine("Status generated from the service GetTransactionStatus ==>> " + finalStatus + " -- " + transactionStatus.GetEnumDescription() + " CodeRequestStatus.code83 -- " + (int)CodeRequestStatus.code83);
             // Console.WriteLine("transactionStatus ==>> " + finalStatus + " -- " + (int)transactionStatus);
 
-            var raStatus = StatusCode.GetRAWithdrawalStatus("C");
-            // Console.WriteLine("GetRAWithdrawalStatus ==>> " + raStatus);
+            //var raStatus = StatusCode.GetRAWithdrawalStatus("C");
+            //// Console.WriteLine("GetRAWithdrawalStatus ==>> " + raStatus);
 
-            var code83 = Convert.ToString((int)CodeRequestStatus.code83);
-            var code83String = CodeRequestStatus.code83.GetEnumStringCode();
+            //var code83 = Convert.ToString((int)CodeRequestStatus.code83);
+            //var code83String = CodeRequestStatus.code83.GetEnumStringCode();
+            //var code833 = CodeRequestStatus.code83;
 
 
-            //Console.WriteLine("transactionStatus ==>> " + code83 );
-            // Console.WriteLine("transactionStatus ==>> " + code83String);
+            //Console.WriteLine("transactionStatus ==>> " + code83);
+            //Console.WriteLine("transactionStatus ==>> " + code83String);
+            //Console.WriteLine("transactionStatus ==>> " + code833);
 
-            decimal? REQAMOUNT = 30000;
-            var REQUESTED_AMOUNT = "30000";
+            //decimal? REQAMOUNT = 30000;
+            //var REQUESTED_AMOUNT = "30000";
 
-            var requestedAmountValue = string.Format("{0:0.00}", REQAMOUNT);// Math.Round(decimal.Parse(REQUESTED_AMOUNT), 2);
-                                                                            // Console.WriteLine("Decimal value requestedAmountValue ==>> " + requestedAmountValue);
+            //var requestedAmountValue = string.Format("{0:0.00}", REQAMOUNT);// Math.Round(decimal.Parse(REQUESTED_AMOUNT), 2);
+            //                                                                // Console.WriteLine("Decimal value requestedAmountValue ==>> " + requestedAmountValue);
 
-            decimal decimalValue1 = Decimal.Parse(REQUESTED_AMOUNT, System.Globalization.CultureInfo.InvariantCulture);
-            string textValue = decimalValue1.ToString("0.00");
+            //decimal decimalValue1 = Decimal.Parse(REQUESTED_AMOUNT, System.Globalization.CultureInfo.InvariantCulture);
+            //string textValue = decimalValue1.ToString("0.00");
 
             //Console.WriteLine("Decimal value textValue ==>> " + textValue);
 
-            Console.WriteLine("AddCurrencyAmount Decimal value ==>> " + AddCurrencyAmount(REQAMOUNT ?? 0m));
-            CreateNotificationEvent notificationEvent = new CreateNotificationEvent
-            (
-                //BodyType = "HTML",
-                //CPFAccountNumber = "ictk_~Tq_Te8#F",
-                //Email = "test@gcc.gov.sg",
-                //FromMS = "Retirement",
-                ////ID = new Guid("79e165cf-b1d8-41cb-8326-721190f02fdb"),
-                //OperationID = ""
-                "SMS", "PA55IM0PLRSMS01", "FORM_TITLE", "Withdrawal Request", "test@test.com", "99009900", "HTML", "", "", "", ""
-            );
+            //Console.WriteLine("AddCurrencyAmount Decimal value ==>> " + AddCurrencyAmount(REQAMOUNT ?? 0m));
+            //CreateNotificationEvent notificationEvent = new CreateNotificationEvent
+            //(
+            //    //BodyType = "HTML",
+            //    //CPFAccountNumber = "ictk_~Tq_Te8#F",
+            //    //Email = "test@gcc.gov.sg",
+            //    //FromMS = "Retirement",
+            //    ////ID = new Guid("79e165cf-b1d8-41cb-8326-721190f02fdb"),
+            //    //OperationID = ""
+            //    "SMS", "PA55IM0PLRSMS01", "FORM_TITLE", "Withdrawal Request", "test@test.com", "99009900", "HTML", "", "", "", ""
+            //);
 
-            Console.WriteLine("Class object details " + JsonSerializer.Serialize(notificationEvent));
+            //Console.WriteLine("Class object details " + JsonSerializer.Serialize(notificationEvent));
 
-            var sms_A55RA_RequestedAmount_PayNowLinebreak_Content = "Dear %%MASKED_NRIC%%, your request to withdraw $%%REQUESTED_AMOUNT%% from your CPF savings, submitted on %%SUBMITTED_DATE%%, has been processed. Please check 'My Activities' in 'my cpf Online Services' for more details." + Environment.NewLine + Environment.NewLine + "If unauthorised, please contact your bank to freeze your bank account immediately, and reset your Singpass (for assistance, call Singpass' 24/7 helpdesk at +65 6335 3533).";
-            Console.WriteLine("sms_A55RA_RequestedAmount_PayNowLinebreak_Content " + sms_A55RA_RequestedAmount_PayNowLinebreak_Content);
+            //var sms_A55RA_RequestedAmount_PayNowLinebreak_Content = "Dear %%MASKED_NRIC%%, your request to withdraw $%%REQUESTED_AMOUNT%% from your CPF savings, submitted on %%SUBMITTED_DATE%%, has been processed. Please check 'My Activities' in 'my cpf Online Services' for more details." + Environment.NewLine + Environment.NewLine + "If unauthorised, please contact your bank to freeze your bank account immediately, and reset your Singpass (for assistance, call Singpass' 24/7 helpdesk at +65 6335 3533).";
+            //Console.WriteLine("sms_A55RA_RequestedAmount_PayNowLinebreak_Content " + sms_A55RA_RequestedAmount_PayNowLinebreak_Content);
+
+            // Random String
+
+            var randomData = RandomString(7);
+
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    Random rnd = new Random();
+            //    int num = rnd.Next(0000000, 9999999);
+            //    string num2 = num.ToString("D7");
+            //    var randomDataWithLetter = "S" + num2 + "V";
+
+            //    Console.WriteLine("randomData " + randomDataWithLetter);
+            //}
+
+            //Console.WriteLine("Enum Description " + GetCodeDescription(79));
+            //for (int i = 0; i < 3; i++)
+            //{
+            //    Random gen = new Random();
+
+            //    DateTime start = new DateTime(1955, 1, 1);
+            //    int range = (DateTime.Today - start).Days;
+            //    Console.WriteLine("Random Date " + start.AddDays(gen.Next(range)));
+            //}
+
+            Console.WriteLine("Random 10 Digit Number " + TransactionNumberGenerator(16));
 
             Console.ReadLine();
+        }
+
+        private static readonly Random _rdm = new Random();
+        private static string TransactionNumberGenerator(int digits)
+        {
+            string transactionNumber = "";
+            if (digits <= 1) return "";
+
+            int _min = 400000000;
+            int _max = 500000000;
+
+            //var _min = (int)Math.Pow(10, digits - 1);
+            //var _max = (int)Math.Pow(10, digits) - 1;
+            var generatedNumber = _rdm.Next(_min, _max).ToString();
+            if (generatedNumber.Length == 9)
+                transactionNumber = generatedNumber + "0000000";
+            return transactionNumber;
+        }
+
+        private static string GetCodeDescription(int code)
+        {
+            // var enumDisplayStatus = Enumerations.GetEnumDescription((CodeRequestStatus)code;
+            return ((CodeRequestStatus)code).AsString(EnumFormat.Description);
         }
 
 
@@ -623,6 +678,23 @@ namespace Code.Practice.Samples
                 Year = year;
                 IsPayed = isPayed;
             }
+        }
+
+        private static string RandomString(int length)
+        {
+            const string pool = "0123456789";
+            var builder = new StringBuilder();
+
+            Random randomGenerator = new Random();//NOSONAR not used in secure contexts
+            int randomInt = randomGenerator.Next();
+
+            for (var i = 0; i < length; i++)
+            {
+                var c = pool[randomGenerator.Next(0, pool.Length)];
+                builder.Append(c);
+            }
+
+            return builder.ToString();
         }
     }
 }
